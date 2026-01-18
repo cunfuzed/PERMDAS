@@ -96,6 +96,32 @@
       .stats:active {
         transform: translateY(0);
       }
+
+      .credits {
+        text-align: left;
+        font-family: "Courier New", Courier, monospace;
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        display: block;
+        margin: 10px 5%;
+        transform: translateX(250px);
+        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
+        font-size: 30px;
+        background: purple;
+        color: white;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+      .credits:hover {
+        transform: translateX(100px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+      .credits:active {
+        transform: translateY(0);
+      }
+      
       body {
         background-image: url("https://images.unsplash.com/photo-1509149037-37dc57ccbd13?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2xpZmYlMjBlZGdlfGVufDB8fDB8fHww");
         background-size: cover;
@@ -113,6 +139,7 @@
     <button class="modes" onclick="window.location.href='modes.html'">Single Player Modes</button>
     <button class="customization" onclick="window.location.href='customization.html'">Customization</button>
     <button class="stats" onclick="window.location.href='stats.html'">Stats</button>
+    <button class="credits" onclick="window.location.href='credits.html'">Credits</button>
     <script>
       // Load saved background if it exists
       window.addEventListener('load', () => {
