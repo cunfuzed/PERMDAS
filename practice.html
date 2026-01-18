@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Practice!</title>
+    <style>
+      .answer_box{
+        display: block;
+        width: 400px;
+        height: 100px;
+        margin: 50px auto 0;
+        font-size: 20px;
+        text-align: center;
+      }
+      .header{
+        text-align: center;
+        font-size: 50px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .equation{
+        margin-top: 100px;
+        text-align: center;
+        margin-right: 350px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .back{
+        backdrop-filter: blur(10px);
+        padding: 15px 50px 15px 80px;
+        clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+        position: absolute;
+        color: red;
+        background-color:rgba(0, 0, 0, 0.3);
+        top: 0px;
+        left: -50px;
+        font-size: 30px;
+        border: none; 
+        cursor: pointer;
+        font-family: "Courier New", Courier, monospace;
+        transition: all 0.3s ease;
+      }
+      .back:hover{
+        transform: translateX(50px)
+      }
+
+      .addition{
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        background-color: red;
+        white-space: nowrap;
+      }
+      .addition:hover{
+        scale: 1.1;
+      }
+      .addition:active{
+        scale: 1.1;
+      }
+      .subtraction{
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        background-color: blue;
+        white-space: nowrap;
+      }
+      .subtraction:hover{
+        scale: 1.1;
+      }
+      .subtraction:active{
+        scale: 1.1;
+      }
+      .multiplication{
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        background-color: purple;
+        white-space: nowrap;
+      }
+      .multiplication:hover{
+        scale: 1.1;
+      }
+      .multiplication:active{
+        scale: 1.1;
+      }
+      .division{
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        background-color: yellow;
+        white-space: nowrap;
+      }
+      .division:hover{
+        scale: 1.1;
+      }
+      .division:active{
+        scale: 1.1;
+      }
+      
+      body{
+        background-image: url("https://media.istockphoto.com/id/591441250/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=8qzBD5zNNCsowK5G01Uvab8zsTdT5V2QoGQ5MK5UD1k=");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class = "header" id = "header" >Practice Mode</h1>
+    <p class = "equation" id="equation" style="margin-left:250px; font-size:40px;"></p>
+    <textarea class = "answer_box" id = "answer_box"></textarea>
+    <a href = "modes.html"><button class = "back">Modes</button></a>
+    <!--buttons for different equation types-->
+    <div style="text-align: center; margin-top: 20px;">
+      <button class = "addition" onclick="operationType = 'addition'; updateEquation();">Addition + </button>
+      <button class = "subtraction" onclick="operationType = 'subtraction'; updateEquation();">Subtraction - </button>
+      <button class = "multiplication" onclick="operationType = 'multiplication'; updateEquation();">Multiplication x </button>
+      <button class = "division" onclick="operationType = 'division'; updateEquation();">Division / </button>
+    </div>
+    <script>
+      let numLimit = 9;
+      let firstNum = Math.round(Math.random() * numLimit);
+      let secondNum = Math.round(Math.random() * numLimit);
+      let operationType = "addition";
+      let equationsCompleted = 0;
+
+      //getting keybinds
+      let answerQuestion = localStorage.getItem("answer_question");
+
+      //getting stats
+      let totalGames = localStorage.getItem("totalGames");
+      let totalEquations = localStorage.getItem("totalEquations");
+      
+      const equationElement = document.getElementById("equation");
+      const answerBox = document.getElementById("answer_box");
+      function updateEquation() {
+        switch(operationType){
+          case "addition":
+            numLimit = 9;
+            equationElement.textContent = `${firstNum} + ${secondNum} =`;
+          break;
+          case "subtraction":
+            numLimit = 9;
+            equationElement.textContent = `${firstNum} - ${secondNum} =`;
+          break;
+          case "multiplication":
+            numLimit = 12;
+            equationElement.textContent = `${firstNum} × ${secondNum} =`;
+          break;
+          case "division":
+            numLimit = 12;
+            if(firstNum === 0){firstNum = 1;}
+            if(secondNum === 0){secondNum = 1;}
+            equationElement.textContent = `${firstNum * secondNum} ÷ ${firstNum} =`;
+        }
+      }
+      function findAnswer() {
+        switch(operationType){
+          case "addition":
+            return firstNum + secondNum;
+          break;
+          case "subtraction":
+            return firstNum - secondNum;
+          break;
+          case "multiplication":
+            return firstNum * secondNum;
+          break;
+          case "division":
+            return secondNum;
+          break;
+        }
+      }
+      function unlockAchievement(achievementId) {
+        let unlockedAchievements = JSON.parse(localStorage.getItem('unlockedAchievements') || '[]');
+        if (!unlockedAchievements.includes(achievementId)) {
+          unlockedAchievements.push(achievementId);
+          localStorage.setItem('unlockedAchievements', JSON.stringify(unlockedAchievements));
+        }
+      }
+      
+      updateEquation();
+      answerBox.addEventListener("keyup", (event) =>{
+        if (event.key === answerQuestion){
+          if (Number(answerBox.value) === findAnswer()){
+            firstNum = Math.round(Math.random() * numLimit);
+            secondNum = Math.round(Math.random() * numLimit);
+            updateEquation();
+            let equationsComp = totalEquations+1;
+            localStorage.setItem("totalEquations", equationsComp);
+            equationsCompleted++;
+            console.log(equationsCompleted);
+            if(equationsCompleted>=500){unlockAchievement("practice_pro");}
+          }else{
+            equationElement.innerHTML = "Wrong answer";
+            setTimeout(() =>{
+              updateEquation();
+            }, 2000);
+          }
+          answerBox.value = "";
+        }
+      });
+      window.addEventListener('load', () => {
+        const savedBg = localStorage.getItem('customBackground');
+        if (savedBg) {
+          document.body.style.backgroundImage = `url('${savedBg}')`;
+        }
+      });
+    </script>
+  </body>
+</html>

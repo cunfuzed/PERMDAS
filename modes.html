@@ -1,0 +1,143 @@
+<html>
+  <head>
+    <title>Modes</title>
+    <style>
+      body{
+        background-image: url("https://www.josephfiler.com/images/xl/Florida-Coast-6682-Edit.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+      .mode{
+        color: white;
+        text-shadow: 2px 2px 4px black;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 50px;
+        text-align: center;
+        margin-top: 100px;
+        color: white;
+        z-index: 1;
+      }
+      .back{
+        backdrop-filter: blur(10px);
+        padding: 15px 50px 15px 80px;
+        clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+        position: absolute;
+        color: red;
+        background-color:rgba(0, 0, 0, 0.3);
+        top: 0px;
+        left: -50px;
+        font-size: 30px;
+        border: none; 
+        cursor: pointer;
+        font-family: "Courier New", Courier, monospace;
+        transition: all 0.3s ease;
+      }
+      .back:hover{
+        transform: translateX(50px)
+      }
+      .box{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: -1;
+      }
+      
+      .sprint {
+        text-align: left;
+        font-family: "Courier New", Courier, monospace;
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        display: block;
+        margin: 10px 5%;
+        transform: translateX(250px);
+        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
+        font-size: 30px;
+        background: #ffd43b;
+        color: white;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+      .sprint:hover {
+        transform: translateX(100px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+      .sprint:active {
+        transform: translateY(0);
+      }
+
+      .blitz {
+        text-align: left;
+        font-family: "Courier New", Courier, monospace;
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        display: block;
+        margin: 10px 5%;
+        transform: translateX(250px);
+        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
+        font-size: 30px;
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+      .blitz:hover {
+        transform: translateX(100px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+      .blitz:active {
+        transform: translateY(0);
+      }
+
+      .practice {
+        text-align: left;
+        font-family: "Courier New", Courier, monospace;
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        display: block;
+        margin: 10px 5%;
+        transform: translateX(250px);
+        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
+        font-size: 30px;
+        background: #ba55d3;
+        color: white;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+      .practice:hover {
+        transform: translateX(100px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+      .practice:active {
+        transform: translateY(0);
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class = "box"></div>
+    <h1 class = "mode">Select a mode:</h1>
+    <a href = "index.html"><button class = "back">Back</button></a>
+    <button class="sprint" onclick="window.location.href='sprint.html'">40 Equation Sprint</button>
+    <button class="blitz" onclick="window.location.href='blitz.html'">Blitz</button>
+    <button class="practice" onclick="window.location.href='practice.html'">Practice Mode</button>
+    <script>
+      window.addEventListener('load', () => {
+        const savedBg = localStorage.getItem('customBackground');
+        if (savedBg) {
+          document.body.style.backgroundImage = `url('${savedBg}')`;
+        }
+      });
+    </script>
+  </body>
+</html>

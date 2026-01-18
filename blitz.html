@@ -1,0 +1,329 @@
+
+<html>
+  <head>
+    <title>Blitz</title>
+    <style>
+      .header{
+        text-align: center;
+        font-size: 50px;
+        color: red;
+        font-family: "Courier New", Courier, monospace
+      }
+      .answer_box{
+        display: block;
+        width: 400px;
+        height: 100px;
+        margin: 50px auto 0;
+        font-size: 20px;
+        text-align: center;
+      }
+      .equation{
+        margin-top: 100px;
+        text-align: center;
+        margin-right: 350px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .counter{
+        font-size: 20px;
+        position: absolute;
+        top: 400px;
+        right: 260px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .timer{
+        font-family: "Courier New", Courier, monospace;
+      }
+      .highscore{
+        position: absolute;
+        font-family: "Courier New", Courier, monospace;
+        top: 60px;
+        right: 16%;
+        font-size: 25px;
+      }
+      .aps{
+        font-size: 20px;
+        position: absolute;
+        top: 375px;
+        right: 260px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .reading-time{
+        font-size: 20px;
+        position: absolute;
+        top: 325px;
+        right: 260px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .typing-time{
+        font-size: 20px;
+        position: absolute;
+        top: 350px;
+        right: 260px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .back{
+        backdrop-filter: blur(10px);
+        padding: 15px 50px 15px 80px;
+        clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+        position: absolute;
+        color: red;
+        background-color:rgba(0, 0, 0, 0.3);
+        top: 0px;
+        left: -50px;
+        font-size: 30px;
+        border: none; 
+        cursor: pointer;
+        font-family: "Courier New", Courier, monospace;
+        transition: all 0.3s ease;
+      }
+      .back:hover{
+        transform: translateX(50px)
+      }
+      .box{
+        position: fixed;
+        top: 0;
+        left: 10%;
+        width: 80%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        z-index: -1;
+      }
+      body{
+        background-image: url("https://images.unsplash.com/photo-1682588111755-af71d01dace3?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+    </style>
+  </head>
+  <body>
+    <div class = "box"></div>
+    <h1 class = "header">Blitz</h1>
+    <p class="highscore" id="highscore">Best Time: --</p>
+    <p class = "equation" id="equation" style="margin-left:250px; font-size:40px;"></p>
+    <p class="timer" id="timer" style="text-align:center; font-size:30px;">
+      Time: 0.00s
+    </p>
+    <p class = "reading-time" id = "reading-time">Avg Read: 0.00s</p>
+    <p class = "typing-time" id = "typing-time">Avg Type: 0.00s</p>
+    <p class = "aps" id = "aps">APS: __.__</p>
+
+    <textarea class = "answer_box" id = "answer_box"></textarea>
+    <p class="counter" id="counter"> Equations Left: 40 </p>
+    <a href = "modes.html"><button class = "back">Modes</button></a>
+    <script>
+      //high scores:
+      let bestScore = localStorage.getItem("bestScore");
+      if (bestScore !== null) {
+         bestScore = Number(bestScore);
+      }
+
+
+      //let vars
+      let firstNum = Math.floor(Math.random() * 10);
+      let secondNum = Math.floor(Math.random() * 10);
+      let equationsCompleted = 0;
+      let startTime = Date.now();
+      let timerInterval;
+      let timerStarted = false;
+      let problemPhase = "not started";
+      let phaseStartTime = Date.now();
+      let totalReadingTime = 0;
+      let totalTypingTime = 0;
+      let score = 0;
+
+      //getting keybinds
+      let answerQuestion = localStorage.getItem("answer_question");
+      let resetGame = localStorage.getItem("reset_game");
+
+      //getting stats
+      let totalGames = localStorage.getItem("totalGames");
+      let totalEquations = localStorage.getItem("totalEquations");
+
+      //const vars
+      const timerElement = document.getElementById("timer");
+      const equationElement = document.getElementById("equation");
+      const answerBox = document.getElementById("answer_box");
+      const counterElement = document.getElementById("counter");
+      const highscoreElement = document.getElementById("highscore");
+      const apsElement = document.getElementById("aps");
+      const readingTimeElement = document.getElementById("reading-time");
+      const typingTimeElement = document.getElementById("typing-time");
+
+      //functions
+      function updateAPS() {
+        const elapsed = (Date.now() - startTime) / 1000;
+        if (elapsed > 0) {
+          const aps = equationsCompleted / elapsed;
+          apsElement.textContent = `APS: ${aps.toFixed(2)}`;
+        }
+
+        // Update average reading and typing times
+        if (equationsCompleted > 0) {
+          const avgReading = (totalReadingTime / equationsCompleted / 1000).toFixed(2);
+          const avgTyping = (totalTypingTime / equationsCompleted / 1000).toFixed(2);
+          readingTimeElement.textContent = `Avg Read: ${avgReading}s`;
+          typingTimeElement.textContent = `Avg Type: ${avgTyping}s`;
+        }
+      }
+      function updateEquation() {
+        equationElement.textContent = `${firstNum} + ${secondNum} =`;
+      }
+      function findAnswer() {
+        return firstNum + secondNum;
+      }
+      function switchPhase(newPhase) {
+        const phaseElapsed = Date.now() - phaseStartTime;
+
+        if (problemPhase === "reading") {
+          totalReadingTime += phaseElapsed;
+        } else if (problemPhase === "typing") {
+          totalTypingTime += phaseElapsed;
+        }
+
+        problemPhase = newPhase;
+        phaseStartTime = Date.now();
+      }
+      function startTimer() {
+        if (timerStarted) return;
+        timerStarted = true;
+        startTime = Date.now();
+        phaseStartTime = startTime;
+        switchPhase("reading");
+
+        timerInterval = setInterval(() => {
+          const elapsed = (Date.now() - startTime) / 1000;
+          timerElement.textContent = `Time: ${elapsed.toFixed(2)}s`;
+          updateAPS();
+
+          //end run if greater than 1:59:999999999... seconds
+          if(elapsed >= 120){
+            clearInterval(timerInterval);
+
+
+            //achievements
+            if(bestScore >= 100){unlockAchievement("blitz_master");}
+            unlockAchievement("first_win");
+            // Record final phase time
+            const phaseElapsed = Date.now() - phaseStartTime;
+            if (problemPhase === "typing") {
+              totalTypingTime += phaseElapsed;
+            }
+
+            //high score stuff
+            const finalScore = score;
+
+            if (bestScore === null || finalScore > bestScore) {
+              bestScore = finalScore;
+              localStorage.setItem("bestScore", bestScore.toString());
+              updateHighscoreDisplay();
+            }
+
+            // Display stats
+            const avgReadingTime = (totalReadingTime / equationsCompleted / 1000).toFixed(2);
+            const avgTypingTime = (totalTypingTime / equationsCompleted / 1000).toFixed(2);
+
+            // adding total games
+            let gamesPlayed = parseInt(totalGames || 0) + 1;
+            localStorage.setItem("totalGames", gamesPlayed.toString());
+
+            //achievements
+            
+            equationElement.innerHTML = `Time's Up!<br>Final Score: ${finalScore}<br>Avg Reading: ${avgReadingTime}s <br> Avg Typing: ${avgTypingTime}s`;
+            answerBox.disabled = true;
+            counterElement.textContent = `Final Score: ${score}`;
+            return;
+          }
+        }, 50);
+      }
+      function updateHighscoreDisplay() {
+        if (bestScore !== null) {
+          highscoreElement.textContent = `Best Score: ${bestScore}`;
+        }
+      }
+      function unlockAchievement(achievementId) {
+        let unlockedAchievements = JSON.parse(localStorage.getItem('unlockedAchievements') || '[]');
+        if (!unlockedAchievements.includes(achievementId)) {
+          unlockedAchievements.push(achievementId);
+          localStorage.setItem('unlockedAchievements', JSON.stringify(unlockedAchievements));
+        }
+      }
+
+      updateEquation();
+      updateHighscoreDisplay();
+      counterElement.textContent = `Score: ${score}`;
+
+      let paused = false;
+
+      //checking for reset
+      document.addEventListener("keydown", (event) =>{
+        if (event.key === resetGame){
+          location.reload();
+          event.preventDefault();
+        }
+      });
+
+      //stuff for text area/answer box
+      answerBox.addEventListener("keyup", (event) => {
+        if (paused) return;
+
+        if (problemPhase === "reading") {
+          switchPhase("typing");
+        }
+
+        if (!timerStarted){
+          startTimer();
+        }
+
+        if (event.key === answerQuestion){
+          event.preventDefault();
+
+          // dont look here
+          if(findAnswer()===2&&firstNum===1){
+            if (answerBox.value.trim() === "x=2,-2") {
+              unlockAchievement("Agni?");
+              equationElement.innerHTML = "In your mind you hear a whisper: Erm, actually";
+              setTimeout(() => {
+                updateEquation();
+              }, 2000);
+              answerBox.value = "";
+              return;
+            }
+          }
+          if (Number(answerBox.value) === findAnswer()) {
+            score++;
+            counterElement.textContent = `Score: ${score}`;
+            firstNum = Math.floor(Math.random() * 10);
+            secondNum = Math.floor(Math.random() * 10);
+            switchPhase("reading");
+            updateEquation();
+
+            let equationsComp = parseInt(totalEquations || 0) + 1;
+            localStorage.setItem("totalEquations", equationsComp.toString());
+            totalEquations = equationsComp.toString();
+            equationsCompleted++;
+          } 
+          else {
+            paused = true;
+            equationElement.innerHTML = "Wrong answer<br>1 second penalty";
+            setTimeout(() => {
+              paused = false;
+              updateEquation();
+            }, 1000);
+          }
+
+          answerBox.value = "";
+        }
+      });
+
+      window.addEventListener('load', () => {
+        const savedBg = localStorage.getItem('customBackground');
+        if (savedBg) {
+          document.body.style.backgroundImage = `url('${savedBg}')`;
+        }
+      });
+    </script>
+  </body>
+</html>

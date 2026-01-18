@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Stats & Achievements</title>
+    <style>
+      body {
+        background-image: url("https://cdn.vectorstock.com/i/500p/29/36/neon-green-line-background-vector-53922936.jpg");
+        margin: 0;
+        padding: 20px;
+        font-family: 'Courier New', Courier, monospace;
+      }
+      
+      .header{
+        text-align: center;
+        font-size: 50px;
+        color: white;
+        text-shadow: 2px 2px 4px black;
+        margin-bottom: 20px;
+      }
+      
+      .back{
+        backdrop-filter: blur(10px);
+        padding: 15px 50px 15px 80px;
+        clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+        position: absolute;
+        color: red;
+        background-color:rgba(0, 0, 0, 0.3);
+        top: 0px;
+        left: -50px;
+        font-size: 30px;
+        border: none; 
+        cursor: pointer;
+        font-family: "Courier New", Courier, monospace;
+        transition: all 0.3s ease;
+      }
+      .back:hover{
+        transform: translateX(50px)
+      }
+      
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 40px auto;
+        max-width: 1000px;
+      }
+      
+      .stat-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 25px;
+        text-align: center;
+        color: white;
+      }
+      
+      .stat-value {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      
+      .stat-label {
+        font-size: 14px;
+        opacity: 0.8;
+      }
+      
+      .achievements-section {
+        max-width: 1000px;
+        margin: 50px auto;
+      }
+      
+      .section-title {
+        font-size: 28px;
+        color: white;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      
+      .badge-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 25px;
+        padding: 20px;
+      }
+      
+      .badge-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+      
+      .badge-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      }
+      
+      .badge-icon {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 15px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 4px solid rgba(255, 215, 0, 0.5);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .badge-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      .badge-icon.locked {
+        filter: grayscale(100%) brightness(0.5);
+        border-color: rgba(100, 100, 100, 0.5);
+      }
+      
+      .badge-icon.locked::after {
+        content: '🔒';
+        position: absolute;
+        font-size: 35px;
+        z-index: 2;
+      }
+      
+      .badge-name {
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 8px;
+      }
+      
+      .badge-description {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.4;
+      }
+      
+      .badge-card.locked {
+        opacity: 0.6;
+      }
+      
+      .badge-card.unlocked .badge-icon {
+        animation: shine 3s infinite;
+      }
+      
+      @keyframes shine {
+        0%, 100% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+        50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
+      }
+      
+      .file-structure {
+        max-width: 600px;
+        margin: 40px auto;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 20px;
+        color: white;
+        font-size: 14px;
+      }
+      
+      .file-structure pre {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="back" onclick="window.location.href='index.html'">← Back</button>
+    
+    <h1 class="header">Stats & Achievements</h1>
+    
+    <!-- Stats Section -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="total-games">0</div>
+        <div class="stat-label">Games Played</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="total-equations">0</div>
+        <div class="stat-label">Equations Solved</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="best-time">--</div>
+        <div class="stat-label">Best Sprint Time</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="best-score">0</div>
+        <div class="stat-label">Best Blitz Score</div>
+      </div>
+    </div>
+    
+    <!-- Achievements Section -->
+    <div class="achievements-section">
+      <h2 class="section-title">Achievements</h2>
+      <div class="badge-grid" id="badge-grid"></div>
+    </div>
+    
+    
+    <script>
+      // All achievements use LOCAL image files from the 'badges/' folder
+      const achievements = [
+        { 
+          id: 'first_win', 
+          name: 'First Steps', 
+          image: 'badges/first-win.png',
+          description: 'Complete your first game' 
+        },
+        { 
+          id: 'speed_demon', 
+          name: 'SPEED', 
+          image: 'badges/SPEED.png',
+          description: 'Finish Sprint in under 40s' 
+        },
+        { 
+          id: 'perfect_score', 
+          name: 'A for average', 
+          image: 'badges/perfect-score.png',
+          description: 'Complete Sprint with no mistakes' 
+        },
+        { 
+          id: 'blitz_master', 
+          name: 'Speed and stamina', 
+          image: 'badges/blitz-master.png',
+          description: 'Score 100+ in Blitz mode' 
+        },
+        { 
+          id: 'practice_pro', 
+          name: 'Practice Makes Perfect', 
+          image: 'badges/practice.png',
+          description: 'Solve 500 practice equations in one sitting' 
+        },
+        { 
+          id: 'Brain', 
+          name: 'Brain', 
+          image: 'badges/brain.png',
+          description: 'achieve an average reading time of under 0.8s in 40 equation sprint' 
+        },
+        { 
+          id: 'Twitch', 
+          name: 'Twitch', 
+          image: 'badges/twitch.png',
+          description: 'achieve an average typing time of under 0.2s in 40 equation sprint' 
+        },
+        { 
+          id: 'Agni?', 
+          name: 'Silver_Nickel', 
+          image: 'badges/yap.png',
+          description: 'to solve this equation, we must first isolate the variable x from the equation 1+1 = 1(x). After dividing both sides by 1, we have 1+1 = x. From here on, we can square both sides by 2 to get 4 = x^2. Then we ████████████, ███████████████████. So in conclusion, x = █,-█' 
+        },
+      ];
+      
+      // Load from localStorage (commented out for artifacts)
+      const savedUnlocked = localStorage.getItem('unlockedAchievements');
+      if (savedUnlocked) unlockedAchievements = JSON.parse(savedUnlocked);
+      
+      // Render achievement badges
+      function renderBadges() {
+        const badgeGrid = document.getElementById('badge-grid');
+        badgeGrid.innerHTML = '';
+        
+        achievements.forEach(achievement => {
+          const isUnlocked = unlockedAchievements.includes(achievement.id);
+          
+          const badgeCard = document.createElement('div');
+          badgeCard.className = `badge-card ${isUnlocked ? 'unlocked' : 'locked'}`;
+          
+          badgeCard.innerHTML = `
+            <div class="badge-icon ${isUnlocked ? '' : 'locked'}">
+              <img src="${achievement.image}" alt="${achievement.name}">
+            </div>
+            <div class="badge-name">${achievement.name}</div>
+            <div class="badge-description">${achievement.description}</div>
+          `;
+          
+          badgeGrid.appendChild(badgeCard);
+        });
+      }
+
+      // Unlock achievement function
+      function unlockAchievement(achievementId) {
+        let unlockedAchievements = JSON.parse(localStorage.getItem('unlockedAchievements') || '[]');
+        if (!unlockedAchievements.includes(achievementId)) {
+          unlockedAchievements.push(achievementId);
+          localStorage.setItem('unlockedAchievements', JSON.stringify(unlockedAchievements));
+        }
+      }
+      
+      // Load stats from localStorage
+      const totalGames = localStorage.getItem('totalGames') || 0;
+      const totalEquations = localStorage.getItem('totalEquations') || 0;
+      const bestTime = localStorage.getItem('bestTime');
+      const bestScore = localStorage.getItem('bestScore') || 0;
+            
+      //local storage
+      document.getElementById('total-games').textContent = totalGames;
+      document.getElementById('total-equations').textContent = totalEquations;
+      document.getElementById('best-time').textContent = bestTime ? bestTime + 's' : '--';
+      document.getElementById('best-score').textContent = bestScore;
+
+      //just in case the user played in an older version
+      if(parseInt(localStorage.getItem("bestTime"))<40){
+        unlockAchievement("speed_demon");
+      }
+      if(parseInt(localStorage.getItem("bestScore"))>100){
+        unlockAchievement("blitz_master");
+      }
+      
+      // Load custom background
+      window.addEventListener('load', () => {
+        const savedBg = localStorage.getItem('customBackground');
+        if (savedBg) {
+          document.body.style.backgroundImage = `url('${savedBg}')`;
+        }
+      });
+      
+      // Initial render
+      renderBadges();
+    </script>
+  </body>
+</html>
