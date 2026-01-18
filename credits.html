@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <style>
+      .scroll_text{
+        font-family: "Courier New", Courier, monospace;
+        font-size: 20px;
+        transition: all 0.05s;
+        text-align: center;
+        color: white;
+        animation: scrolling-credits 100s linear forwards;
+        overflow: hidden;
+      }
+      @keyframes scrolling-credits {
+          0% {
+              transform: translateY(600px); 
+          }
+          100% {
+              transform: translateY(-90%); 
+          }
+      }
+      .back{
+        backdrop-filter: blur(10px);
+        padding: 15px 50px 15px 80px;
+        clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+        position: absolute;
+        color: red;
+        background-color:rgba(50, 50, 50, 0.3);
+        top: 0px;
+        left: -50px;
+        font-size: 30px;
+        border: none; 
+        cursor: pointer;
+        font-family: "Courier New", Courier, monospace;
+        transition: all 0.3s ease;
+      }
+      .back:hover{
+        transform: translateX(50px)
+      }
+      body{
+        background: black;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <a href = "index.html"><button class = "back">Back</button></a>
+    <p class = "scroll_text">This all was created from the foolish dreams of a 13 year old student<br><br><br>As with many 13 year olds, they weren't that bright, and weren't doing as good in algebra as they wanted<br><br><br>From all the tests that they got, they kept making stupid mistakes<br><br><br>(For example, 7-3 does NOT equal 10)<br><br><br>But they hated studying, because it was, in their opinion, one of the most boring things to do<br><br><br>That's when they found it<br><br><br>They saw how the developers somehow made a boring concept into one that was fun<br><br><br>Being an amatuer in coding, they thought, "What if I could make a game about math?"<br><br><br>Surely, a person who had spent a year coding would know how to make such a program in p5js?<br><br><br><br><br><br><br><br>WRONG.<br><br><br><br><br><br><br><br>In the first version, they couldn't even make a proper input system<br><br><br>In the second one, they found a way to bypass p5js limits, but even that didn't help<br><br><br>Finally, on this 3rd attempt, they did it<br><br><br>On January 7th, 2026, PERMDAS was started.<br><br><br><br><br><br><br>Cunfuzed: Head coder<br><br><br><br><br><br><br>Singh_is_king: Music creator<br><br><br><br><br><br><br>Baoism: playtester<br><br><br><br><br><br><br>Zeo: playtester and music creator<br><br><br><br><br><br><br><br><br><br><br><br><br><br>And to you, Player, thank you for you time</p>
+    <script>
+      
+    </script>
+  </body>
+</html>
