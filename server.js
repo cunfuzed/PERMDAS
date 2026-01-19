@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.get("/index.html", (req, res) => {
+app.get("/", (req, res) => {
   res.json({ status: "ok" });
 });
 
