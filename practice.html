@@ -180,6 +180,9 @@
             equationsCompleted++;
             console.log(equationsCompleted);
             if(equationsCompleted>=500){unlockAchievement("practice_pro");}
+            if(equationsCompleted===600){
+              alert("You do know that you passed 500 equations a while ago,right?");
+            }
           }else{
             equationElement.innerHTML = "Wrong answer";
             setTimeout(() =>{
