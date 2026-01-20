@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>PERMDAS</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+    <style>
+      .header{
+        color: black;
+        text-shadow: 2px 2px 4px black;
+        text-align: center;
+        font-size: 50px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .text{
+        text-align: center;
+        font-size: 15px;
+        color: gray;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      .multiplayer {
+        text-align: left;
+        font-family: "Courier New", Courier, monospace;
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        display: block;
+        margin: 10px 5%;
+        transform: translateX(250px);
+        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
+        font-size: 30px;
+        background: red;
+        color: white;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+      .multiplayer:hover {
+        transform: translateX(100px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+      .multiplayer:active {
+        transform: translateY(0);
+      }
+
+      .modes {
+        text-align: left;
+        font-family: "Courier New", Courier, monospace;
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        display: block;
+        margin: 10px 5%;
+        transform: translateX(250px);
+        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
+        font-size: 30px;
+        background: darkorange;
+        color: white;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+      .modes:hover {
+        transform: translateX(100px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+      .modes:active {
+        transform: translateY(0);
+      }
+
+      .customization {
+        text-align: left;
+        font-family: "Courier New", Courier, monospace;
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        display: block;
+        margin: 10px 5%;
+        transform: translateX(250px);
+        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
+        font-size: 30px;
+        background: blue;
+        color: white;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+      .customization:hover {
+        transform: translateX(100px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+      .customization:active {
+        transform: translateY(0);
+      }
+
+      .stats {
+        text-align: left;
+        font-family: "Courier New", Courier, monospace;
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        display: block;
+        margin: 10px 5%;
+        transform: translateX(250px);
+        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
+        font-size: 30px;
+        background: lightseagreen;
+        color: white;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+      .stats:hover {
+        transform: translateX(100px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+      .stats:active {
+        transform: translateY(0);
+      }
+
+      .credits {
+        text-align: left;
+        font-family: "Courier New", Courier, monospace;
+        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+        display: block;
+        margin: 10px 5%;
+        transform: translateX(250px);
+        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
+        font-size: 30px;
+        background: darkslategray;
+        color: white;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+      .credits:hover {
+        transform: translateX(100px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+      .credits:active {
+        transform: translateY(0);
+      }
+
+      body {
+        background-image: url("https://images.unsplash.com/photo-1509149037-37dc57ccbd13?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2xpZmYlMjBlZGdlfGVufDB8fDB8fHww");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <h1 class = "header" id = "header">PERMDAS</h1>
+    <p class = "text">paranthesis exponent/root multiplication/division addition/subtraction</p>
+    <button class="multiplayer" onclick="window.location.href='multiplayer.html'">Multiplayer (INDEV)</button>
+    <button class="modes" onclick="window.location.href='modes.html'">Single Player Modes</button>
+    <button class="customization" onclick="window.location.href='customization.html'">Customization</button>
+    <button class="stats" onclick="window.location.href='stats.html'">Stats</button>
+    <button class="credits" onclick="window.location.href='credits.html'">Credits</button>
+    <script>
+      // Load saved background if it exists
+      window.addEventListener('load', () => {
+        const savedBg = localStorage.getItem('customBackground');
+        if (savedBg) {
+          document.body.style.backgroundImage = `url('${savedBg}')`;
+        }
+      });
+
+    </script>
+  </body>
+
+</html>
