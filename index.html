@@ -1,143 +1,85 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>PERMDAS</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  
     <style>
       .header{
-        color: black;
+        color: white;
         text-shadow: 2px 2px 4px black;
         text-align: center;
         font-size: 50px;
         font-family: "Courier New", Courier, monospace;
+        margin-top: 100px;
       }
-      .text{
+      .prompt{
         text-align: center;
-        font-size: 15px;
-        color: gray;
+        font-size: 18px;
+        color: #333;
         font-family: "Courier New", Courier, monospace;
+        margin-bottom: 20px;
       }
-      
-      .modes {
-        text-align: left;
-        font-family: "Courier New", Courier, monospace;
-        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
+      .username{
         display: block;
-        margin: 10px 5%;
-        transform: translateX(250px);
-        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
-        font-size: 30px;
-        background: #ffcc00;
+        width: 80%;
+        margin: 20px auto;
+        padding: 10px;
+        font-size: 16px;
+        font-family: "Courier New", Courier, monospace;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .username-matrix{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      }
+      #submit{
+        display: block;
+        margin: 20px auto;
+        padding: 12px 40px;
+        font-size: 16px;
+        font-family: "Courier New", Courier, monospace;
+        background: linear-gradient(145deg, #6366f1, #4f46e5);
         color: white;
         border: none;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
         cursor: pointer;
         transition: all 0.3s ease;
-        white-space: nowrap;
       }
-      .modes:hover {
-        transform: translateX(100px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      #submit:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       }
-      .modes:active {
-        transform: translateY(0);
-      }
-      
-      .customization {
-        text-align: left;
-        font-family: "Courier New", Courier, monospace;
-        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
-        display: block;
-        margin: 10px 5%;
-        transform: translateX(250px);
-        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
-        font-size: 30px;
-        background: #9ACD32;
-        color: white;
-        border: none;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        white-space: nowrap;
-      }
-      .customization:hover {
-        transform: translateX(100px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-      }
-      .customization:active {
-        transform: translateY(0);
-      }
-
-      .stats {
-        text-align: left;
-        font-family: "Courier New", Courier, monospace;
-        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
-        display: block;
-        margin: 10px 5%;
-        transform: translateX(250px);
-        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
-        font-size: 30px;
-        background: blue;
-        color: white;
-        border: none;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        white-space: nowrap;
-      }
-      .stats:hover {
-        transform: translateX(100px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-      }
-      .stats:active {
-        transform: translateY(0);
-      }
-
-      .credits {
-        text-align: left;
-        font-family: "Courier New", Courier, monospace;
-        clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
-        display: block;
-        margin: 10px 5%;
-        transform: translateX(250px);
-        padding: 30px 100% 30px 500px; /* top, right, bottom, left */
-        font-size: 30px;
-        background: purple;
-        color: white;
-        border: none;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        white-space: nowrap;
-      }
-      .credits:hover {
-        transform: translateX(100px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-      }
-      .credits:active {
-        transform: translateY(0);
-      }
-      
       body {
-        background-image: url("https://images.unsplash.com/photo-1509149037-37dc57ccbd13?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2xpZmYlMjBlZGdlfGVufDB8fDB8fHww");
+        background: black;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
+        margin: 0;
+        padding: 0;
       }
   
     </style>
   </head>
-
   <body>
-    <h1 class = "header" id = "header">PERMDAS</h1>
-    <p class = "text">paranthesis exponent/root multiplication/division addition/subtraction</p>
-    <button class="modes" onclick="window.location.href='modes.html'">Single Player Modes</button>
-    <button class="customization" onclick="window.location.href='customization.html'">Customization</button>
-    <button class="stats" onclick="window.location.href='stats.html'">Stats</button>
-    <button class="credits" onclick="window.location.href='credits.html'">Credits</button>
+    <h1 class = "header" id = "header">Welcome to PERMDAS!</h1>
+    <div class = "username-matrix">
+      <p class = "prompt">Please enter your username:</p>
+      <input type="text" class="username" id="username-input" placeholder="Enter username...">
+      <button id="submit">Submit</button>
+    </div>
     <script>
       // Load saved background if it exists
       window.addEventListener('load', () => {
@@ -145,8 +87,38 @@
         if (savedBg) {
           document.body.style.backgroundImage = `url('${savedBg}')`;
         }
+        
+        // Check if username already exists
+        const savedUsername = localStorage.getItem('username');
+        if (savedUsername) {
+          // Skip login and go straight to main page
+          window.location.href = 'home.html';
+        }
       });
-
+      
+      // Submit button functionality
+      document.getElementById('submit').addEventListener('click', () => {
+        const username = document.getElementById('username-input').value.trim();
+        
+        if (username === '') {
+          alert('Please enter a username');
+          return;
+        }
+        
+        // Save username to localStorage
+        localStorage.setItem('username', username);
+        
+        // Redirect to main page
+        window.location.href = 'main.html'; // Change to your actual main page
+      });
+      
+      // Allow Enter key to submit
+      document.getElementById('username-input').addEventListener('keyup', (event) => {
+        if (event.key === 'Enter') {
+          document.getElementById('submit').click();
+        }
+      });
+      
       //making sure keybinds are set
       if(localStorage.getItem("answer_question") === null){
         localStorage.setItem("answer_question", "Enter");
@@ -156,30 +128,28 @@
       }
       //making sure sound settings are set
       if(localStorage.getItem("soundEnabled") === null){
-        localStorage.setItem("soundEnabled", true);
+        localStorage.setItem("soundEnabled", "true");
       }
       if(localStorage.getItem("musicEnabled") === null){
-        localStorage.setItem("musicEnabled", false);
+        localStorage.setItem("musicEnabled", "false");
       }
       if(localStorage.getItem("correctSound") === null){
-        localStorage.setItem("correctSound", true);
+        localStorage.setItem("correctSound", "true");
       }
       if(localStorage.getItem("wrongSound") === null){
-        localStorage.setItem("wrongSound", true);
+        localStorage.setItem("wrongSound", "true");
       }
       //making sure stats are set
       if(localStorage.getItem("totalGames") === null){
-        localStorage.setItem("totalGames", 0);
+        localStorage.setItem("totalGames", "0");
       }
       if(localStorage.getItem("totalEquations") === null){
-        localStorage.setItem("totalEquations", 0);
+        localStorage.setItem("totalEquations", "0");
       }
       //making sure achievements are set
       if(localStorage.getItem("unlockedAchievements") === null){
         localStorage.setItem("unlockedAchievements", "[]");
       }
-
     </script>
   </body>
-
 </html>
