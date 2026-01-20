@@ -175,7 +175,7 @@
             firstNum = Math.round(Math.random() * numLimit);
             secondNum = Math.round(Math.random() * numLimit);
             updateEquation();
-            let equationsComp = parseInt(totalEquations)+1;
+            let equationsComp = parseInt(totalEquations||0)+1;
             localStorage.setItem("totalEquations", equationsComp);
             equationsCompleted++;
             console.log(equationsCompleted);
