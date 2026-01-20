@@ -178,16 +178,6 @@
       if(localStorage.getItem("unlockedAchievements") === null){
         localStorage.setItem("unlockedAchievements", "[]");
       }
-      //server testing stuff, I sure do hope this works
-      fetch("https://permdas.onrender.com")
-      .then(res => res.json())
-      .then(data => {
-        console.log("Server said:", data);
-      })
-      .catch(err => {
-        console.error("Fetch failed:", err);
-      });
-
 
     </script>
   </body>
