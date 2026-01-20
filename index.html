@@ -90,7 +90,7 @@
         const savedUsername = localStorage.getItem('username');
         if (savedUsername) {
           // Skip login and go straight to main page
-          window.location.href = 'home.html';
+          //window.location.href = 'home.html';
         }
       });
       
@@ -116,7 +116,7 @@
         .then(data => {
           console.log("Server stored user:", data.user);
           // Go to main page
-          window.location.href = 'main.html';
+          window.location.href = 'home.html';
         })
         .catch(err => console.error("Failed to register username:", err));
       });
