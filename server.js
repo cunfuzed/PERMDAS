@@ -36,6 +36,7 @@ app.post("/register", (req, res) => {
   }
 
   res.json({ success: true, user: users[name] });
+  req.json({ success: true, user: users[name] });
 });
 
 app.get("/users", (req, res) => {
