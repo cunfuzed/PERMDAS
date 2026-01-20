@@ -97,25 +97,30 @@
       // Submit button functionality
       document.getElementById('submit').addEventListener('click', () => {
         const username = document.getElementById('username-input').value.trim();
-        
+      
         if (username === '') {
           alert('Please enter a username');
           return;
         }
-        
-        // Save username to localStorage
-        localStorage.setItem('username', username);
-        
-        // Redirect to main page
-        window.location.href = 'home.html'; // Change to your actual main page
-      });
       
-      // Allow Enter key to submit
-      document.getElementById('username-input').addEventListener('keyup', (event) => {
-        if (event.key === 'Enter') {
-          document.getElementById('submit').click();
-        }
+        // Save username locally
+        localStorage.setItem('username', username);
+      
+        // Send username to server
+        fetch("https://permdas.onrender.com/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: username })
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log("Server stored user:", data.user);
+          // Go to main page
+          window.location.href = 'main.html';
+        })
+        .catch(err => console.error("Failed to register username:", err));
       });
+
       
       //making sure keybinds are set
       if(localStorage.getItem("answer_question") === null){
