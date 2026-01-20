@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Server is alive");
+  res.json({ status: "alive" });
 });
 
 app.listen(PORT, () => {
