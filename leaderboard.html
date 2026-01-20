@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Leaderboard</title>
+    <style>
+      .header{
+        font-family: "Courier New", Courier, monospace;
+        text-align: center;
+        font-size: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class = "header">Leaderboard:</h1>
+    <script>
+      //fetching stuff from server
+      fetch("https://permdas.onrender.com")
+      .then(res => res.json())
+      .then(data => {
+        let places = [data];
+      })
+      .catch(err => {
+        console.error("Fetch failed:", err);
+      });
+    </script>
+  </body>
+</html>
