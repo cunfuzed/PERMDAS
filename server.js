@@ -37,4 +37,5 @@ app.post("/register", (req, res) => {
 app.get("/users", (req, res) => {
   // Object.keys(users) gives an array of all usernames
   res.json(Object.keys(users));
+  console.log("Register request received:", users);
 });
