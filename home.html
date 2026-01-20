@@ -172,6 +172,10 @@
           document.body.style.backgroundImage = `url('${savedBg}')`;
         }
       });
+      //stuff
+      fetch("https://permdas.onrender.com/users")
+        .then(res => res.json())
+        .then(data => console.log(data));
 
     </script>
   </body>
