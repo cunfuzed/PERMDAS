@@ -70,7 +70,7 @@ app.get("/leaderboard", (req, res) => {
     });
   }
 
-  allScores.sort((a, b) => b.score - a.score);
+  allScores.sort((a, b) => a.score - b.score);
   const topScores = allScores.slice(0, 10);
 
   res.json(topScores);
