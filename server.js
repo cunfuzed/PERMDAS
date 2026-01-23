@@ -81,6 +81,15 @@ app.get("/users", (req, res) => {
   res.json(Object.keys(users));
 });
 
+
+app.get("/dump", (req, res) => {
+  if (!fs.existsSync(DATA_FILE)) {
+    return res.json({ message: "No file yet" });
+  }
+  const data = fs.readFileSync(DATA_FILE, "utf8");
+  res.type("json").send(data);
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
