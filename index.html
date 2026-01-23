@@ -68,46 +68,41 @@
         margin: 0;
         padding: 0;
       }
-  
     </style>
   </head>
   <body>
-    <h1 class = "header" id = "header">Welcome to PERMDAS!</h1>
-    <div class = "username-matrix">
-      <p class = "prompt">Please enter your username:</p>
+    <h1 class="header" id="header">Welcome to PERMDAS!</h1>
+    <div class="username-matrix">
+      <p class="prompt">Please enter your username:</p>
       <input type="text" class="username" id="username-input" placeholder="Enter username...">
       <button id="submit">Submit</button>
     </div>
+
     <script>
+      const API = "https://permdas-om6g.onrender.com";
+
       // Load saved background if it exists
       window.addEventListener('load', () => {
         const savedBg = localStorage.getItem('customBackground');
         if (savedBg) {
           document.body.style.backgroundImage = `url('${savedBg}')`;
         }
-        
-        // Check if username already exists
-        const savedUsername = localStorage.getItem('username');
-        if (savedUsername) {
-          // Skip login and go straight to main page
-          //window.location.href = 'home.html';
-        }
       });
-      
+
       // Submit button functionality
       document.getElementById('submit').addEventListener('click', () => {
         const username = document.getElementById('username-input').value.trim();
-      
+
         if (username === '') {
           alert('Please enter a username');
           return;
         }
-      
+
         // Save username locally
         localStorage.setItem('username', username);
-      
+
         // Send username to server
-        fetch("https://permdas.onrender.com/register", {
+        fetch(API + "/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name: username })
@@ -121,15 +116,13 @@
         .catch(err => console.error("Failed to register username:", err));
       });
 
-      
-      //making sure keybinds are set
+      // Defaults
       if(localStorage.getItem("answer_question") === null){
         localStorage.setItem("answer_question", "Enter");
       }
       if(localStorage.getItem("reset_game") === null){
         localStorage.setItem("reset_game", "r");
       }
-      //making sure sound settings are set
       if(localStorage.getItem("soundEnabled") === null){
         localStorage.setItem("soundEnabled", "true");
       }
@@ -142,14 +135,12 @@
       if(localStorage.getItem("wrongSound") === null){
         localStorage.setItem("wrongSound", "true");
       }
-      //making sure stats are set
       if(localStorage.getItem("totalGames") === null){
         localStorage.setItem("totalGames", "0");
       }
       if(localStorage.getItem("totalEquations") === null){
         localStorage.setItem("totalEquations", "0");
       }
-      //making sure achievements are set
       if(localStorage.getItem("unlockedAchievements") === null){
         localStorage.setItem("unlockedAchievements", "[]");
       }
