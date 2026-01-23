@@ -121,6 +121,34 @@
     <a href = "modes.html"><button class = "back">Modes</button></a>
 
     <script>
+
+
+
+      const API = "https://permdas-om6g.onrender.com";
+      
+      function submitFinalScore(finalTime) {
+        const username = localStorage.getItem("username");
+      
+        if (!username) {
+          console.error("No username found in localStorage");
+          return;
+        }
+      
+        fetch(API + "/score", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: username,
+            score: finalTime
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log("Score submitted:", data.user);
+        })
+        .catch(err => console.error("Score submit failed:", err));
+      }
+
       //high scores:
       let bestTime = localStorage.getItem("bestTime");
       if (bestTime !== null) {
@@ -309,6 +337,7 @@
               equationElement.innerHTML = `Sprint complete!<br>Avg Reading: ${avgReadingTime}s <br> Avg Typing: ${avgTypingTime}s`;
               answerBox.disabled = true;
               answerBox.value = "";
+              submitFinalScore(finalTime)
               return;
             }
 
