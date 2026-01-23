@@ -8,20 +8,42 @@
         text-align: center;
         font-size: 50px;
       }
+      .list {
+        font-family: "Courier New", Courier, monospace;
+        text-align: center;
+        font-size: 25px;
+      }
     </style>
   </head>
   <body>
-    <h1 class = "header">Leaderboard:</h1>
+    <h1 class="header">Leaderboard:</h1>
+    <div id="leaderboard" class="list"></div>
+
     <script>
-      //fetching stuff from server
-      fetch("https://permdas.onrender.com")
-      .then(res => res.json())
-      .then(data => {
-        let places = [data];
-      })
-      .catch(err => {
-        console.error("Fetch failed:", err);
-      });
+      const API = "https://permdas-om6g.onrender.com";
+
+      // Fetch and display leaderboard
+      fetch(API + "/leaderboard")
+        .then(res => res.json())
+        .then(data => {
+          const container = document.getElementById("leaderboard");
+
+          if (data.length === 0) {
+            container.innerText = "No scores yet.";
+            return;
+          }
+
+          let html = "<ol>";
+          data.forEach(item => {
+            html += "<li>" + item.name + " - " + item.score + "</li>";
+          });
+          html += "</ol>";
+
+          container.innerHTML = html;
+        })
+        .catch(err => {
+          console.error("Fetch failed:", err);
+        });
     </script>
   </body>
 </html>
