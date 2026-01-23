@@ -13,9 +13,28 @@
         text-align: center;
         font-size: 25px;
       }
+      .back{
+        backdrop-filter: blur(10px);
+        padding: 15px 50px 15px 80px;
+        clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+        position: absolute;
+        color: red;
+        background-color:rgba(50, 50, 50, 0.3);
+        top: 0px;
+        left: -50px;
+        font-size: 30px;
+        border: none; 
+        cursor: pointer;
+        font-family: "Courier New", Courier, monospace;
+        transition: all 0.3s ease;
+      }
+      .back:hover{
+        transform: translateX(50px)
+      }
     </style>
   </head>
   <body>
+    
     <h1 class="header">Leaderboard:</h1>
     <div id="leaderboard" class="list"></div>
 
