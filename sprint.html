@@ -337,7 +337,12 @@
               equationElement.innerHTML = `Sprint complete!<br>Avg Reading: ${avgReadingTime}s <br> Avg Typing: ${avgTypingTime}s`;
               answerBox.disabled = true;
               answerBox.value = "";
-              submitFinalScore(finalTime)
+              
+              if(finalTime<bestTime){
+                submitFinalScore(bestTime);
+              }else{
+                submitFinalScore(finalTime);
+              }
               return;
             }
 
