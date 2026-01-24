@@ -5,13 +5,30 @@
     <meta charset = "utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+      body{
+        background-image: url("https://vertexeng.com/app/uploads/2018/04/Construction-Completion-Costs.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed
+      }
+      .box{
+        position: fixed;
+        top: 0;
+        left: 10%;
+        width: 80%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        z-index: -1;
+      }
       .back{
         backdrop-filter: blur(10px);
         padding: 15px 50px 15px 80px;
         clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
         position: absolute;
         color: red;
-        background-color:rgba(50, 50, 50, 0.3);
+        background-color:rgba(0, 0, 0, 0.3);
         top: 0px;
         left: -50px;
         font-size: 30px;
@@ -23,16 +40,284 @@
       .back:hover{
         transform: translateX(50px)
       }
-      body{
-        
+      .header{
+        color: black;
+        text-shadow: 2px 2px 4px red;
+        text-align: center;
+        font-size: 50px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .equation{
+        margin-top: 80px;
+        text-align: center;
+        font-size: 40px;
+        font-family: "Courier New", Courier, monospace;
+        color: white;
+      }
+      .answer_box{
+        display: block;
+        width: 400px;
+        height: 100px;
+        margin: 50px auto 0;
+        font-size: 20px;
+        text-align: center;
+      }
+      .meters_display{
+        color: white;
+        font-size: 20px;
+        text-align: center;
+        top: 375px;
+        font-family: "Courier New", Courier, monospace
       }
     </style>
   </head>
   <body>
-    <a href = "modes.html"><button class = "back">Modes</button></a>
-    <p>Well, sorry but this is just a page that serves no purpose (yet..)</p>
+    <div class = "box"></div>
+    <a href = "multiplayer.html"><button class = "back">Back</button></a>
+    <h1 class = "header" id = "floor">Floor 1</h1>
+    <p class = "equation" id = "equation">Undefined...</p>
+    <textarea class = "answer_box" id = "answer_box"></textarea>
+    <p class = "meters_display" id = "meters_display">Meters:____</p>
     <script>
+      //hooray! you get an achievement for joining the game when it wasn't released yet
+      unlockAchievement("under_construction");
       
+      //some variables
+      let meters = 0;
+      let floorNumber = 1;
+      let floorType = "Addition +";
+      let equation  = [];
+      let exponentInSolve = false;
+      let rootInSolve = false;
+      let climbSpeed = 0;
+      let passiveClimbSpeed = 0;
+      let combo = 0;
+      let climbDecay = 1;
+      let paused = false;
+      let comboMultiplier = 1;
+      let climbPower = 1;
+
+      //getting the html elements
+      const equationElement = document.getElementById("equation");
+      const answerBox = document.getElementById("answer_box");
+      const metersDisplay = document.getElementById("meters_display");
+      const floorElement = document.getElementById("floor");
+
+      //getting keybinds
+      let answerQuestion = localStorage.getItem("answer_question");
+      let resetGame = localStorage.getItem("reset_game");
+
+      //getting stats
+      let totalGames = localStorage.getItem("totalGames");
+      let totalEquations = localStorage.getItem("totalEquations");
+      
+      //functions
+      function generateEquation(){
+        switch(floorType){
+          case "Addition +":
+            equation = [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
+          break;
+          case "Subtraction -":
+            equation = [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
+          break;
+          case "Multiplication ×":
+            equation = [Math.floor(Math.random()*12), Math.floor(Math.random()*12)];
+          break;
+          case "Division ÷":
+            equation = [Math.floor(Math.random()*12), Math.floor(Math.random()*12)];
+            //no x/0!
+            if(equation[0] === 0){equation[0] = 1;}
+            if(equation[1] === 0){equation[1] = 1;}
+          break;
+          case "Exponents ^":
+            equation = [Math.floor(Math.random()*10)];
+          break;
+          case "Roots √":
+            equation = [Math.floor(Math.random()*10)];
+            equation[0] = equation[0] * equation[0];
+          break;
+          case "Order Of Operations I":
+            equation = [Math.floor(Math.random()*10), Math.floor(Math.random()*10), Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
+          break;
+          case "Order Of Operations II":
+            equation = [Math.floor(Math.random()*10), Math.floor(Math.random()*10), Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
+            if(Math.random()<0.10){
+              equation[0] = equation[0] * equation[0];
+              exponentInSolve = true;
+            }
+            if(Math.random()<0.10){
+              equation[1] = equation[1] * equation[1];
+              rootInSolve = true;
+            }
+          break;
+          case "ACCEL":
+            equation = [Math.floor(Math.random()*10), Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
+          break;
+          case "ALGEBRA I":
+            equation = [Math.floor(Math.random()*10), Math.floor(Math.random()*10), Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
+          break;
+          case "ALGEBRA II":
+            equation = [Math.floor(Math.random()*10), Math.floor(Math.random()*10), Math.floor(Math.random()*10), Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
+          break;
+        }
+      }
+      function updateFloorNumber(){
+        if(meters>100){
+          floorNumber = 2;
+        }
+        if(meters>500){
+          floorNumber = 3;
+        }
+        if(meters>1500){
+          floorNumber = 4;
+        }
+        if(meters>4000){
+          floorNumber = 5;
+        }
+        if(meters>10000){
+          floorNumber = 6;
+        }
+      }
+      function findFloor(){
+        switch(floorNumber){
+          case 1:
+            floorType = "Addition +";
+          break;
+          case 2:
+            floorType = "Subtraction -";
+          break;
+          case 3:
+            floorType =  "Multiplication ×";
+          break;
+          case 4:
+            floorType = "Division ÷";
+          break;
+          case 5:
+            floorType = "Exponents ^";
+          break;
+          case 6:
+            floorType = "Roots √";
+          break;
+        }
+      }
+      function findAnswer(){
+        switch(floorType){
+            case "Addition +":
+              return equation[0] + equation[1];
+            break;
+            case "Subtraction -":
+              return equation[0] - equation[1];
+            break;
+            case "Multiplication ×":
+              return equation[0] * equation[1];
+            break;
+            case "Division ÷":
+              return equation[1];
+            break;
+            case "Exponents ^":
+              return equation[0] * equation[0];
+            break;
+            case "Roots √":
+              return Math.sqrt(equation[0]);
+            break;
+        }
+      }
+      function climb(){
+        meters += climbSpeed;
+        meters += passiveClimbSpeed; 
+      }
+      function displayEquation(){
+        switch(floorType){
+            case "Addition +":
+              equationElement.innerHTML = `${equation[0]} + ${equation[1]} =`;
+            break;
+            case "Subtraction -":
+              equationElement.innerHTML = `${equation[0]} - ${equation[1]} =`;
+            break;
+            case "Multiplication ×":
+              equationElement.innerHTML = `${equation[0]} × ${equation[1]} =`;
+            break;
+            case "Division ÷":
+              equationElement.textContent = `${equation[0] * equation[1]} ÷ ${equation[0]} =`;
+            break;
+            case "Exponents ^":
+              equationElement.innerHTML = `${equation[0]}^2=`;
+            break;
+            case "Roots √":
+              equationElement.innerHTML = `√${equation[0]} =`;
+            break;
+        }
+      }
+      function displayMeters(){
+        meters = Math.floor(meters*10);
+        meters = meters/10;
+      }
+      function findComboMultiplier(){
+        comboMultiplier = combo/50;
+      }
+      function unlockAchievement(achievementId){
+        let unlockedAchievements = JSON.parse(localStorage.getItem('unlockedAchievements') || '[]');
+        if (!unlockedAchievements.includes(achievementId)){
+          unlockedAchievements.push(achievementId);
+        }
+        localStorage.setItem('unlockedAchievements', JSON.stringify(unlockedAchievements));
+      }
+
+      updateFloorNumber();
+      findFloor();
+      generateEquation();
+
+      equationElement.innerHTML = `${equation[0]} + ${equation[1]} =`;
+
+      //loop for updating stuff
+      if(!paused){
+        setInterval(() =>{
+          if(paused){return;}
+          metersDisplay.innerHTML = `Meters: ${meters}`;
+          floorElement.innerHTML = `Floor ${floorNumber}<br>${floorType} `;
+          climbSpeed-=climbDecay;
+          if(climbSpeed<0){climbSpeed = 0;}
+          passiveClimbSpeed-=0.0001;
+          if(passiveClimbSpeed<0){passiveClimbSpeed = 0;}
+          climbDecay+=0.0005;
+          if(comboMultiplier>floorNumber){comboMultiplier=floorNumber;}
+          findAnswer();
+          climb();
+          updateFloorNumber();
+          findFloor();
+          displayMeters();
+          displayEquation();
+        }, 100);
+      }else{
+        equationElement.innerHTML = "Wrong answer<br>2 second penalty";
+      }
+  
+      //on equation solved
+      answerBox.addEventListener("keyup", (event) =>{
+        if(paused)return;
+        if(event.key === answerQuestion){
+          if(Number(answerBox.value) === findAnswer()){
+            combo++;
+            climbSpeed += combo*climbPower/2;
+            generateEquation();
+            displayEquation();
+            passiveClimbSpeed+=0.01
+            answerBox.value = "";
+          }else{
+            answerBox.disabled = true;
+            paused = true;
+            equationElement.innerHTML = "Wrong answer<br>2 second penalty";
+            combo = 0;
+            answerBox.value = "";
+            setTimeout(() => {
+              paused = false;
+              answerBox.disabled = false;
+              answerBox.focus();
+              if(passiveClimbSpeed>1){passiveClimbSpeed -= 1;}else{passiveClimbSpeed-=0.01}
+            }, 2000 );
+          }
+        }
+      });
     </script>
   </body>
   
