@@ -298,7 +298,7 @@
 
             //0-int achievement
             if(keypresses === 1){
-              unlockAchievement("0_int");
+              unlockAchievement("zero_input");
             }
 
             if (equationsLeft <= 0) {
@@ -330,8 +330,8 @@
               //achievements
               if(finalTime <= 40){unlockAchievement("speed_demon");}
               if(mistakes <= 0){unlockAchievement("perfect_score");}
-              if(avgReadingTime < 0.8){unlockAchievement("Brain");}
-              if(avgTypingTime < 0.2){unlockAchievement("Twitch");}
+              if(avgReadingTime < 0.8){unlockAchievement("brain");}
+              if(avgTypingTime < 0.2){unlockAchievement("twitch");}
               unlockAchievement("first_win");
 
               equationElement.innerHTML = `Sprint complete!<br>Avg Reading: ${avgReadingTime}s <br> Avg Typing: ${avgTypingTime}s`;
