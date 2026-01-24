@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>PERMDAS</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
     <style>
       .header{
         color: black;
@@ -164,7 +166,15 @@
     <button class="customization" onclick="window.location.href='customization.html'">Customization</button>
     <button class="stats" onclick="window.location.href='stats.html'">Stats</button>
     <button class="credits" onclick="window.location.href='credits.html'">Credits</button>
+    <audio id = "source_of_audio" controls autoplay loop></audio>
+    
     <script>
+      //background music!
+      const backgroundMusic = document.getElementById("source_of_audio");
+      const musicEnabled = localStorage.getItem("musicEnabled");
+      if(musicEnabled === "true"){
+        backgroundMusic.src = "music/Aerial_City.mp3";
+      }
       // Load saved background if it exists
       window.addEventListener('load', () => {
         const savedBg = localStorage.getItem('customBackground');
@@ -172,10 +182,6 @@
           document.body.style.backgroundImage = `url('${savedBg}')`;
         }
       });
-      //stuff
-      fetch("https://permdas.onrender.com/users")
-        .then(res => res.json())
-        .then(data => console.log(data));
 
     </script>
   </body>
