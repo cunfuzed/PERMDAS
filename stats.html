@@ -46,7 +46,6 @@
         margin: 40px auto;
         max-width: 1000px;
       }
-      
       .stat-card {
         background: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(10px);
@@ -55,13 +54,11 @@
         text-align: center;
         color: white;
       }
-      
       .stat-value {
         font-size: 36px;
         font-weight: bold;
         margin-bottom: 10px;
       }
-      
       .stat-label {
         font-size: 14px;
         opacity: 0.8;
@@ -71,7 +68,6 @@
         max-width: 1000px;
         margin: 50px auto;
       }
-      
       .section-title {
         font-size: 28px;
         color: white;
@@ -85,7 +81,6 @@
         gap: 25px;
         padding: 20px;
       }
-      
       .badge-card {
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(10px);
@@ -94,12 +89,10 @@
         text-align: center;
         transition: all 0.3s ease;
       }
-      
       .badge-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0,0,0,0.3);
       }
-      
       .badge-icon {
         width: 90px;
         height: 90px;
@@ -113,49 +106,92 @@
         position: relative;
         overflow: hidden;
       }
-      
       .badge-icon img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
-      
       .badge-icon.locked {
         filter: grayscale(100%) brightness(0.5);
         border-color: rgba(100, 100, 100, 0.5);
       }
-      
       .badge-icon.locked::after {
         content: '🔒';
         position: absolute;
         font-size: 35px;
         z-index: 2;
       }
-      
       .badge-name {
         font-size: 16px;
         font-weight: bold;
         color: white;
         margin-bottom: 8px;
       }
-      
       .badge-description {
         font-size: 12px;
         color: rgba(255, 255, 255, 0.7);
         line-height: 1.4;
       }
-      
       .badge-card.locked {
         opacity: 0.6;
+    }
+
+      .badge-common .badge-icon {
+        box-shadow: 0 0 10px rgba(255,255,255,0.35);
       }
-      
-      .badge-card.unlocked .badge-icon {
-        animation: shine 3s infinite;
+      .badge-rare .badge-icon {
+        animation: rarePulse 3s infinite;
       }
-      
-      @keyframes shine {
-        0%, 100% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
-        50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
+      .badge-epic .badge-icon {
+        animation: epicPulse 3s infinite;
+      }
+      .badge-legendary .badge-icon {
+        animation: legendaryGlow 2s infinite alternate;
+      }
+      .badge-secret .badge-icon {
+        animation: secretThing 5s infinite;
+      }
+
+      .badge-common .badge-icon {
+        border-color: rgba(255,255,255,0.35);
+      }
+      .badge-rare .badge-icon {
+        border-color: rgba(100,180,255,0.8);
+      }
+      .badge-epic .badge-icon {
+        border-color: rgb(126, 57, 154);
+      }
+      .badge-legendary .badge-icon {
+        border-color: rgba(255,215,0,0.9);
+      }
+      .badge-secret .badge-icon {
+        border-color: transparent;
+      }
+
+      @keyframes secretThing {
+        0% { box-shadow: 0 0 35px #000000; }
+        50% { box-shadow: 0 0 70px #6A1B9A; }
+        100% { box-shadow: 0 0 35px #4A148C; }
+      }
+      @keyframes legendaryGlow {
+        from {
+          box-shadow:
+            0 0 15px rgba(255,215,0,0.6),
+            0 0 30px rgba(255,215,0,0.4);
+        }
+        to {
+          box-shadow:
+            0 0 35px rgba(255,215,0,1),
+            0 0 70px rgba(255,215,0,0.8);
+        }
+      }
+      @keyframes rarePulse {
+        0%,100% { box-shadow: 0 0 12px rgba(100,180,255,0.4); }
+        50% { box-shadow: 0 0 26px rgba(100,180,255,0.85); }
+      }
+      @keyframes epicPulse{
+        0%,100% { box-shadow: 0 0 12px rgb(106, 27, 154,0.4) }
+        50% { box-shadow: 0 0 26px rgb(171, 71, 188,0.85) }
       }
       
       .file-structure {
@@ -168,7 +204,6 @@
         color: white;
         font-size: 14px;
       }
-      
       .file-structure pre {
         background: rgba(0, 0, 0, 0.5);
         padding: 15px;
@@ -212,88 +247,111 @@
     <script>
       // All achievements use LOCAL image files from the 'badges/' folder
       const achievements = [
-        { 
-          id: 'first_win', 
-          name: 'First Steps', 
+        {
+          id: 'first_win',
+          name: 'First Steps',
           image: 'badges/first-win.png',
-          description: 'Complete your first game' 
+          description: 'Complete your first game',
+          type: 'common'
         },
-        { 
-          id: 'speed_demon', 
-          name: 'SPEED', 
-          image: 'badges/SPEED.png',
-          description: 'Finish Sprint in under 40s' 
-        },
-        { 
-          id: 'perfect_score', 
-          name: 'A for average', 
+        {
+          id: 'perfect_score',
+          name: 'A for average',
           image: 'badges/perfect-score.png',
-          description: 'Complete Sprint with no mistakes' 
+          description: 'Complete Sprint with no mistakes',
+          type: 'rare'
         },
-        { 
-          id: 'blitz_master', 
-          name: 'Speed and stamina', 
-          image: 'badges/blitz-master.png',
-          description: 'Score 100+ in Blitz mode' 
-        },
-        { 
-          id: 'practice_pro', 
-          name: 'Practice Makes Perfect', 
-          image: 'badges/practice.png',
-          description: 'Solve 500 practice equations in one sitting' 
-        },
-        { 
-          id: 'Brain', 
-          name: 'Brain', 
-          image: 'badges/brain.png',
-          description: 'achieve an average reading time of under 0.8s in 40 equation sprint' 
-        },
-        { 
-          id: 'Twitch', 
-          name: 'Twitch', 
-          image: 'badges/twitch.png',
-          description: 'achieve an average typing time of under 0.2s in 40 equation sprint' 
-        },
-        { 
-          id: 'Agni?', 
-          name: 'Silver_Nickel', 
-          image: 'badges/yap.png',
-          description: 'to solve this equation, we must first isolate the variable x from the equation 1+1 = 1(x). After dividing both sides by 1, we have 1+1 = x. From here on, we can square both sides by 2 to get 4 = x^2. Then we ████████████, ███████████████████. So in conclusion, x = █,-█' 
-        },
-        { 
-          id: '0_int', 
-          name: '0_int', 
+        {
+          id: 'zero_input',
+          name: '0_int',
           image: 'badges/0_int.png',
-          description: 'solve an equation in sprint mode in 1 keypress' 
+          description: 'Solve an equation in 1 keypress',
+          type: 'rare'
+        },
+        {
+          id: 'blitz_master',
+          name: 'Speed and stamina',
+          image: 'badges/blitz-master.png',
+          description: 'Score 100+ in Blitz mode',
+          type: 'epic'
+        },
+        {
+          id: 'brain',
+          name: 'Brain',
+          image: 'badges/brain.png',
+          description: 'Average reading time under 0.8s',
+          type: 'epic'
+        },
+        {
+          id: 'twitch',
+          name: 'Twitch',
+          image: 'badges/twitch.png',
+          description: 'Average typing time under 0.2s',
+          type: 'epic'
+        },
+        {
+          id: 'speed_demon',
+          name: 'SPEED',
+          image: 'badges/SPEED.png',
+          description: 'Finish Sprint in under 40s',
+          type: 'legendary'
+        },
+        {
+          id: 'practice_pro',
+          name: 'Practice Makes Perfect',
+          image: 'badges/practice.png',
+          description: 'Solve 500 practice equations in one sitting',
+          type: 'legendary'
+        },
+        {
+          id: 'silver_nickel',
+          name: 'Silver_Nickel',
+          image: 'badges/yap.png',
+          description: '???',
+          type: 'secret'
+        },
+        {
+          id: 'under_construction',
+          name: 'The formation of the tower',
+          image: 'badges/under_construction.png',
+          description: 'visit the tower page before it's official release',
+          type: 'secret'
         },
       ];
+
       
       // Load from localStorage (commented out for artifacts)
       const savedUnlocked = localStorage.getItem('unlockedAchievements');
       if (savedUnlocked) unlockedAchievements = JSON.parse(savedUnlocked);
       
       // Render achievement badges
+      function getUnlocked() {
+        return JSON.parse(localStorage.getItem('unlockedAchievements') || '[]');
+      }
       function renderBadges() {
+        const unlocked = getUnlocked();
         const badgeGrid = document.getElementById('badge-grid');
         badgeGrid.innerHTML = '';
-        
-        achievements.forEach(achievement => {
-          const isUnlocked = unlockedAchievements.includes(achievement.id);
-          
+
+        achievements.forEach(a => {
+          const isUnlocked = unlocked.includes(a.id);
+          const typeClass = isUnlocked ? `badge-${a.type}` : '';
+
           const badgeCard = document.createElement('div');
-          badgeCard.className = `badge-card ${isUnlocked ? 'unlocked' : 'locked'}`;
-          
+          badgeCard.className = `badge-card ${isUnlocked ? 'unlocked' : 'locked'} ${typeClass}`;
+
           badgeCard.innerHTML = `
             <div class="badge-icon ${isUnlocked ? '' : 'locked'}">
-              <img src="${achievement.image}" alt="${achievement.name}">
+              <img src="${a.image}" alt="${a.name}">
             </div>
-            <div class="badge-name">${achievement.name}</div>
-            <div class="badge-description">${achievement.description}</div>
+            <div class="badge-name">${a.name}</div>
+            <div class="badge-description">${a.description}</div>
           `;
-          
+
           badgeGrid.appendChild(badgeCard);
         });
       }
+
 
       // Unlock achievement function
       function unlockAchievement(achievementId) {
@@ -320,7 +378,7 @@
       if(parseInt(localStorage.getItem("bestTime"))<40){
         unlockAchievement("speed_demon");
       }
-      if(parseInt(localStorage.getItem("bestScore"))>100){
+      if(parseInt(localStorage.getItem("bestScore"))>=100){
         unlockAchievement("blitz_master");
       }
       
