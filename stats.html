@@ -245,7 +245,7 @@
     
     
     <script>
-      // All achievements use LOCAL image files from the 'badges/' folder
+      //all achievments
       const achievements = [
         {
           id: 'first_win',
@@ -320,9 +320,10 @@
       ];
 
       
-      // Load from localStorage (commented out for artifacts)
+      let unlockedAchievements = [];
       const savedUnlocked = localStorage.getItem('unlockedAchievements');
       if (savedUnlocked) unlockedAchievements = JSON.parse(savedUnlocked);
+
       
       // Render achievement badges
       function getUnlocked() {
