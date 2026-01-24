@@ -374,25 +374,28 @@
       answerQuestion.value = localStorage.getItem("answer_question");
       resetGame.value = localStorage.getItem("reset_game");
 
+      //checking if sounds are set
+      soundEnabled.checked = localStorage.getItem('soundEnabled') === 'true';
+      musicEnabled.checked = localStorage.getItem('musicEnabled') === 'true';
+      correctSound.checked = localStorage.getItem('correctSound') === 'true';
+      wrongSound.checked = localStorage.getItem('wrongSound') === 'true';
+      
       //sounds
-      soundEnabled.addEventListener('change', () =>{
+      soundEnabled.addEventListener('change', () => {
         localStorage.setItem('soundEnabled', soundEnabled.checked);
       });
-      musicEnabled.addEventListener('change', () =>{
+
+      musicEnabled.addEventListener('change', () => {
         localStorage.setItem('musicEnabled', musicEnabled.checked);
       });
-      correctSound.addEventListener('change', () =>{
+
+      correctSound.addEventListener('change', () => {
         localStorage.setItem('correctSound', correctSound.checked);
       });
-      wrongSound.addEventListener('change', () =>{
+
+      wrongSound.addEventListener('change', () => {
         localStorage.setItem('wrongSound', wrongSound.checked);
       });
-
-      //load saved sounds settings
-      soundEnabled.checked = localStorage.getItem('soundEnabled');
-      musicEnabled.checked = localStorage.getItem('musicEnabled');
-      correctSound.checked = localStorage.getItem('correctSound');
-      wrongSound.checked = localStorage.getItem('wrongSound');
     </script>
   </body>
 </html>
