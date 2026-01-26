@@ -295,7 +295,11 @@
             }
           }
           if (Number(answerBox.value) === findAnswer()) {
-            score++;
+            if(findAnswer()<10){
+              score++;
+            }else{
+              score+=2;
+            }
             counterElement.textContent = `Score: ${score}`;
             firstNum = Math.floor(Math.random() * 10);
             secondNum = Math.floor(Math.random() * 10);
