@@ -334,15 +334,17 @@
               if(avgTypingTime < 0.2){unlockAchievement("twitch");}
               unlockAchievement("first_win");
 
-              equationElement.innerHTML = `Sprint complete!<br>Avg Reading: ${avgReadingTime}s <br> Avg Typing: ${avgTypingTime}s`;
+              equationElement.innerHTML = `Sprint complete!<br>Final Time: ${finalTime}s`;
               answerBox.disabled = true;
               answerBox.value = "";
               
               if(finalTime<bestTime){
                 submitFinalScore(bestTime);
+                
               }else{
                 submitFinalScore(finalTime);
               }
+              
               return;
             }
 
