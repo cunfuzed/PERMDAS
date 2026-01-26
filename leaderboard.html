@@ -31,6 +31,19 @@
       .back:hover{
         transform: translateX(50px)
       }
+      .ranking{
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        margin: 10px auto;
+        max-width: 600px;
+        padding: 10px;
+      }
+      .ranking:hover{
+        transform: translateX(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3)
+      }
       body{
         background-image: url("https://thriftyjinxy.com/wp-content/uploads/2018/06/bao-dumpling-baby.jpg");
         background-size: cover;
@@ -38,37 +51,44 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
       }
+      ol {
+        padding: 0;
+        list-style-position: inside;
+      }
     </style>
   </head>
   <body>
     <a href = "multiplayer.html"><button class = "back">Back</button></a>
     <h1 class="header">Leaderboard:</h1>
     <div id="leaderboard" class="list"></div>
-
     <script>
       const API = "https://family-complete-walked-borders.trycloudflare.com";
-
       // Fetch and display leaderboard
       fetch(API + "/leaderboard")
         .then(res => res.json())
         .then(data => {
           const container = document.getElementById("leaderboard");
-
           if (data.length === 0) {
             container.innerText = "No scores yet.";
             return;
           }
-
-          let html = "<ol>";
+          
+          // Create ordered list
+          const ol = document.createElement("ol");
+          
+          // Add each player as a ranking div
           data.forEach(item => {
-            html += "<li>" + item.name + " - " + item.score + " seconds</li>";
+            const ranking = document.createElement("div");
+            ranking.className = "ranking";
+            ranking.innerHTML = "<li>" + item.name + " - " + item.score + " seconds</li>";
+            ol.appendChild(ranking);
           });
-          html += "</ol>";
-
-          container.innerHTML = html;
+          
+          container.appendChild(ol);
         })
         .catch(err => {
           console.error("Fetch failed:", err);
+          document.getElementById("leaderboard").innerText = "Failed to load leaderboard.";
         });
     </script>
   </body>
