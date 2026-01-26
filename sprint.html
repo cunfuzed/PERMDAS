@@ -65,6 +65,24 @@
         right: 260px;
         font-family: "Courier New", Courier, monospace;
       }
+      .box{
+        position: fixed;
+        top: 0;
+        left: 10%;
+        width: 80%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        z-index: -1;
+      }
+      body {
+        background-image: url("https://images.fineartamerica.com/images-medium-large-5/sunset-over-mountain-layers-maya-karkalicheva.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: white;
+      }
       .back{
         backdrop-filter: blur(10px);
         padding: 15px 50px 15px 80px;
@@ -83,24 +101,6 @@
       .back:hover{
         transform: translateX(50px)
       }
-      .box{
-        position: fixed;
-        top: 0;
-        left: 10%;
-        width: 80%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(10px);
-        z-index: -1;
-      }
-      body {
-        background-image: url("https://images.fineartamerica.com/images-medium-large-5/sunset-over-mountain-layers-maya-karkalicheva.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-      }
-
     </style>
   </head>
 
