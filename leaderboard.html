@@ -7,6 +7,8 @@
         font-family: "Courier New", Courier, monospace;
         text-align: center;
         font-size: 50px;
+        color: white;
+        text-shadow: 2px 2px 4px black;
       }
       .list {
         font-family: "Courier New", Courier, monospace;
@@ -27,9 +29,10 @@
         cursor: pointer;
         font-family: "Courier New", Courier, monospace;
         transition: all 0.3s ease;
+        z-index: 1000;
       }
       .back:hover{
-        transform: translateX(50px)
+        transform: translateX(50px);
       }
       .ranking{
         background-color: rgba(0, 0, 0, 0.3);
@@ -42,7 +45,20 @@
       }
       .ranking:hover{
         transform: translateX(-3px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3)
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      }
+      .ranking li {
+        color: white;
+        text-shadow: 1px 1px 3px black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .medal-img {
+        width: 35px;
+        height: 35px;
+        vertical-align: middle;
       }
       body{
         background-image: url("https://thriftyjinxy.com/wp-content/uploads/2018/06/bao-dumpling-baby.jpg");
@@ -58,18 +74,24 @@
     </style>
   </head>
   <body>
-    <a href = "multiplayer.html"><button class = "back">Back</button></a>
+    <button class="back" onclick="window.location.href='multiplayer.html'">Back</button>
     <h1 class="header">Leaderboard:</h1>
-    <div id="leaderboard" class="list"></div>
+    <div id="leaderboard" class="list">Loading...</div>
     <script>
       const API = "https://family-complete-walked-borders.trycloudflare.com";
+      const container = document.getElementById("leaderboard");
+      
       // Fetch and display leaderboard
       fetch(API + "/leaderboard")
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error('Network response was not ok');
+          return res.json();
+        })
         .then(data => {
-          const container = document.getElementById("leaderboard");
+          container.innerHTML = '';
+          
           if (data.length === 0) {
-            container.innerText = "No scores yet.";
+            container.innerHTML = '<p style="color: white; text-shadow: 2px 2px 4px black;">No scores yet. Be the first!</p>';
             return;
           }
           
@@ -77,10 +99,21 @@
           const ol = document.createElement("ol");
           
           // Add each player as a ranking div
-          data.forEach(item => {
+          data.forEach((item, index) => {
             const ranking = document.createElement("div");
             ranking.className = "ranking";
-            ranking.innerHTML = "<li>" + item.name + " - " + item.score + " seconds</li>";
+            
+            // Add medal image for top 3
+            let medalImg = '';
+            if (index === 0) {
+              medalImg = '<img src="medals/gold.png" class="medal-img" alt="Gold Medal">';
+            } else if (index === 1) {
+              medalImg = '<img src="medals/silver.png" class="medal-img" alt="Silver Medal">';
+            } else if (index === 2) {
+              medalImg = '<img src="medals/bronze.png" class="medal-img" alt="Bronze Medal">';
+            }
+            
+            ranking.innerHTML = `<li>${medalImg}<span>${item.name} - ${item.score} seconds</span></li>`;
             ol.appendChild(ranking);
           });
           
@@ -88,8 +121,16 @@
         })
         .catch(err => {
           console.error("Fetch failed:", err);
-          document.getElementById("leaderboard").innerText = "Failed to load leaderboard.";
+          container.innerHTML = '<p style="color: red; text-shadow: 2px 2px 4px black;">Failed to load leaderboard. Please try again later.</p>';
         });
+      
+      // Load custom background
+      window.addEventListener('load', () => {
+        const savedBg = localStorage.getItem('customBackground');
+        if (savedBg) {
+          document.body.style.backgroundImage = `url('${savedBg}')`;
+        }
+      });
     </script>
   </body>
 </html>
