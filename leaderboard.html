@@ -66,7 +66,7 @@
         border-radius: 15px;
         padding: 20px;
         width: 60%;
-        margin: 0 auto;
+        margin: 20px auto;
       }
       .gamemode-title{
         font-family: "Courier New", Courier, monospace;
@@ -91,55 +91,85 @@
   <body>
     <button class="back" onclick="window.location.href='multiplayer.html'">Back</button>
     <h1 class="header">Leaderboard:</h1>
-    <div class = "container">
-      <h2 class = "gamemode-title">40 Equation Sprint</h2>
-      <div id="leaderboard" class="list">Loading...</div>
+    
+    <!-- Sprint Leaderboard -->
+    <div class="container">
+      <h2 class="gamemode-title">40 Equation Sprint</h2>
+      <div id="leaderboard-sprint" class="list">Loading...</div>
     </div>
+    
+    <!-- Blitz Leaderboard -->
+    <div class="container">
+      <h2 class="gamemode-title">Blitz</h2>
+      <div id="leaderboard-blitz" class="list">Loading...</div>
+    </div>
+    
     <script>
       const API = "https://family-complete-walked-borders.trycloudflare.com";
-      const container = document.getElementById("leaderboard");
       
-      // Fetch and display leaderboard
+      // Function to create leaderboard display
+      function displayLeaderboard(data, containerId, scoreLabel) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        
+        if (data.length === 0) {
+          container.innerHTML = '<p style="color: white; text-shadow: 2px 2px 4px black;">No scores yet. Be the first!</p>';
+          return;
+        }
+        
+        // Create ordered list
+        const ol = document.createElement("ol");
+        
+        // Add each player as a ranking div
+        data.forEach((item, index) => {
+          const ranking = document.createElement("div");
+          ranking.className = "ranking";
+          
+          // Add medal image for top 3
+          let medalImg = '';
+          if (index === 0) {
+            medalImg = '<img src="medals/gold.png" class="medal-img" alt="Gold Medal">';
+          } else if (index === 1) {
+            medalImg = '<img src="medals/silver.png" class="medal-img" alt="Silver Medal">';
+          } else if (index === 2) {
+            medalImg = '<img src="medals/bronze.png" class="medal-img" alt="Bronze Medal">';
+          }
+          
+          ranking.innerHTML = `<li>${medalImg}<span>${item.name} - ${item.score} ${scoreLabel}</span></li>`;
+          ol.appendChild(ranking);
+        });
+        
+        container.appendChild(ol);
+      }
+      
+      //sprint stuff
       fetch(API + "/leaderboard")
         .then(res => {
           if (!res.ok) throw new Error('Network response was not ok');
           return res.json();
         })
         .then(data => {
-          container.innerHTML = '';
-          
-          if (data.length === 0) {
-            container.innerHTML = '<p style="color: white; text-shadow: 2px 2px 4px black;">No scores yet. Be the first!</p>';
-            return;
-          }
-          
-          // Create ordered list
-          const ol = document.createElement("ol");
-          
-          // Add each player as a ranking div
-          data.forEach((item, index) => {
-            const ranking = document.createElement("div");
-            ranking.className = "ranking";
-            
-            // Add medal image for top 3
-            let medalImg = '';
-            if (index === 0) {
-              medalImg = '<img src="medals/gold.png" class="medal-img" alt="Gold Medal">';
-            } else if (index === 1) {
-              medalImg = '<img src="medals/silver.png" class="medal-img" alt="Silver Medal">';
-            } else if (index === 2) {
-              medalImg = '<img src="medals/bronze.png" class="medal-img" alt="Bronze Medal">';
-            }
-            
-            ranking.innerHTML = `<li>${medalImg}<span>${item.name} - ${item.score} seconds</span></li>`;
-            ol.appendChild(ranking);
-          });
-          
-          container.appendChild(ol);
+          displayLeaderboard(data, "leaderboard-sprint", "seconds");
         })
         .catch(err => {
-          console.error("Fetch failed:", err);
-          container.innerHTML = '<p style="color: red; text-shadow: 2px 2px 4px black;">Failed to load leaderboard. Please try again later.</p>';
+          console.error("Sprint leaderboard fetch failed:", err);
+          document.getElementById("leaderboard-sprint").innerHTML = 
+            '<p style="color: red; text-shadow: 2px 2px 4px black;">Failed to load leaderboard. Please try again later.</p>';
+        });
+      
+      //blitz stuff
+      fetch(API + "/leaderboard-blitz")
+        .then(res => {
+          if (!res.ok) throw new Error('Network response was not ok');
+          return res.json();
+        })
+        .then(data => {
+          displayLeaderboard(data, "leaderboard-blitz", "points");
+        })
+        .catch(err => {
+          console.error("Blitz leaderboard fetch failed:", err);
+          document.getElementById("leaderboard-blitz").innerHTML = 
+            '<p style="color: red; text-shadow: 2px 2px 4px black;">Failed to load leaderboard. Please try again later.</p>';
         });
       
       // Load custom background
