@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Duels</title>
+    <style>
+      body{
+        background-image:url("https://media.posterstore.com/site_images/685ddd908b7ca77dcb8af940_1207156463_PS50626-4.jpg?auto=compress%2Cformat&fit=max&w=3840");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+      }
+      .duels-header{
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;
+        color: white;
+        text-shadow: 2px 2px 4px black;
+        font-size: 40px;
+      }
+      .matrix{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        padding: 30px;
+        background: black;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5)
+      }
+      .que{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        top: 60%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        padding: 30px;
+        background: whitesmoke;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        color: black;
+        font-family: "Courier New", Courier, monospace;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .que:hover{
+        transform: translate(-50%,-60%);
+      }
+      .back{
+        backdrop-filter: blur(10px);
+        padding: 15px 50px 15px 80px;
+        clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+        position: absolute;
+        color: red;
+        background-color:rgba(0, 0, 0, 0.3);
+        top: 0px;
+        left: -50px;
+        font-size: 30px;
+        border: none; 
+        cursor: pointer;
+        font-family: "Courier New", Courier, monospace;
+        transition: all 0.3s ease
+      }
+      .back:hover{
+        transform: translateX(50px)
+      }
+      .elo-display{
+        position: absolute;
+        color: white;
+        right: 100px;
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 20px
+      }
+      .box{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: -1
+      }
+    </style>
+  </head>
+  <body>
+    <div class = "box"></div>
+    <a href = "multiplayer.html"><button class = "back">Back</button></a>
+    <div class = "elo-display" id = "elo-display">ELO: _____</div>
+    <h1 class = "duels-header">Duels</h1>
+    <div class = "matrix">
+      <p style = "color: white; font-family: 'Courier New', Courier, monospace; font-size: 20px;">  Duels is a PvP mode in which you race against an opponent to knock them out first. By solving equations, you can deflect attacks from the enemy or send attacks to the enemy. The matches made are skill base by your ELO. Winning a battle will cause you to gain elo, while loosing would cause the opposite.</p>
+    </div>
+    <button class = "que" id = "que">Enter Matchmaking</button>
+    <script>
+      
+    </script>
+  </body>
+</html>
