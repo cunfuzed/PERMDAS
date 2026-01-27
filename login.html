@@ -70,8 +70,9 @@
   <body>
     <h1 class = "login-header">Login</h1>
     <div class="login-container">
-      <input type="text" class="login-input" id="username-input" placeholder="Password">
-      <button class="login-button" id="login-button">Login</button>
+      <input type="text" class="login-input" id="username-input" placeholder="Username">
+      <input type="password" class="password-input" id="password" placeholder="Password">
+      <button class="login-button" id="login-button" onclick="login()">Login</button>
       <p id="error-message" style="color: red; margin-top: 15px;"></p>
       <p style="color: white; margin-top: 20px;">Don't have an account? <a href="index.html" style="color: #6366f1; text-decoration: none;">Register</a></
     </div>
@@ -79,7 +80,12 @@
       const API = "https://family-complete-walked-borders.trycloudflare.com";
       const loginButton = document.getElementById('login-button');
       const usernameInput = document.getElementById('username-input');
+      const passwordInput = document.getElementById('password-input');
       const errorMessage = document.getElementById('error-message');
+
+      function login(){
+        
+      }
     </script>
   </body>
 </html>
