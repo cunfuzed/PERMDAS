@@ -338,12 +338,9 @@
               answerBox.disabled = true;
               answerBox.value = "";
               
-              if(finalTime>bestTime){
-                submitFinalScore(bestTime);
-                
-              }else{
-                submitFinalScore(finalTime);
-              }
+              
+              submitFinalScore(finalTime);
+              
               
               return;
             }
