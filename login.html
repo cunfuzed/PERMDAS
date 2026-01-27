@@ -106,7 +106,7 @@
       }
 
       async function login(){
-        var passwordHash = secureHash(passwordInput.value)
+        var passwordHash = await secureHash(passwordInput.value)
         var username = usernameInput.value;  //i coded this myself no ai
         fetch(API + "/checkUsernameAndPasswordHash", {
           method: "POST",
