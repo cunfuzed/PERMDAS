@@ -98,9 +98,6 @@
           return;
         }
 
-        // Save username locally
-        localStorage.setItem('username', username);
-
         // Send username to server
         fetch(API + "/register", {
           method: "POST",
@@ -109,7 +106,15 @@
         })
         .then(res => res.json())
         .then(data => {
-          console.log("Server stored user:", data.user);
+          if(data.sucess){
+            console.log("Server stored user:", data.user);
+            
+            // Save username locally
+            localStorage.setItem('username', username);
+
+          }else{
+            alert(data.msg)
+          }
           // Go to main page
           window.location.href = 'home.html';
         })
