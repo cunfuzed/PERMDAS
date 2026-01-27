@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html>
   <head>
     <title>Blitz</title>
@@ -116,6 +116,31 @@
     <p class="counter" id="counter"> Equations Left: 40 </p>
     <a href = "modes.html"><button class = "back">Modes</button></a>
     <script>
+      const API = "https://family-complete-walked-borders.trycloudflare.com";
+      
+      function submitFinalScore(finalScore) {
+        const username = localStorage.getItem("username");
+      
+        if (!username) {
+          console.error("No username found in localStorage");
+          return;
+        }
+      
+        fetch(API + "/score-blitz", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: username,
+            score: finalScore
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log("Score submitted:", data.user);
+        })
+        .catch(err => console.error("Score submit failed:", err));
+      }
+
       //high scores:
       let bestScore = localStorage.getItem("bestScore");
       if (bestScore !== null) {
@@ -236,6 +261,10 @@
             equationElement.innerHTML = `Time's Up!<br>Final Score: ${finalScore}<br>Avg Reading: ${avgReadingTime}s <br> Avg Typing: ${avgTypingTime}s`;
             answerBox.disabled = true;
             counterElement.textContent = `Final Score: ${score}`;
+            
+            // Submit score to server
+            submitFinalScore(finalScore);
+            
             return;
           }
         }, 50);
