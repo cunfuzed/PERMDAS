@@ -83,19 +83,19 @@
       const passwordInput = document.getElementById('password-input');
       const errorMessage = document.getElementById('error-message');
 
-        fetch(API + "/score", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: username,
-            score: finalTime
-          })
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log("Score submitted:", data.user);
-        })
-        .catch(err => console.error("Score submit failed:", err));
+        // fetch(API + "/score", {
+        //   method: "POST",
+        //   headers: { "Content-Type": "application/json" },
+        //   body: JSON.stringify({
+        //     name: username,
+        //     score: finalTime
+        //   })
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+        //   console.log("Score submitted:", data.user);
+        // })
+        // .catch(err => console.error("Score submit failed:", err));
       
       async function secureHash(message) {
         const msgUint8 = new TextEncoder().encode(message);
