@@ -108,7 +108,7 @@
       async function login(){
         var passwordHash = await secureHash(passwordInput.value)
         var username = usernameInput.value;  //i coded this myself no ai
-        fetch(API + "/checkUsernameAndPasswordHash", {
+        fetch(API + "/checkUsernameAndPasswordHashForLogin", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
