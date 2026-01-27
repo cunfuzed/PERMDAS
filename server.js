@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -33,66 +32,102 @@ function saveUsers() {
 // --- Register a new username ---
 app.post("/register", (req, res) => {
 	console.log("DEBUG: POST /register called");
-
 	const { name } = req.body;
-
 	if (!name || typeof name !== "string") {
 		console.log("DEBUG: Invalid username:", name);
 		return res.status(400).json({ error: "Invalid username" });
 	}
-
 	if (!users[name]) {
 		console.log("DEBUG: New user. Creating:", name);
 		users[name] = {
 			scores: [],
+			blitzScores: [],
 			totalGames: 0,
 			totalEquations: 0
 		};
 		saveUsers();
 	} else {
 		console.log("DEBUG: User already exists:", name);
+		// Ensure blitzScores exists for existing users
+		if (!users[name].blitzScores) {
+			users[name].blitzScores = [];
+			saveUsers();
+		}
 	}
-
 	console.log("DEBUG: Registration success:", name);
 	res.json({ success: true, user: users[name] });
 });
 
-// --- Submit a score for a user ---
+// --- Submit a score for Sprint mode ---
 app.post("/score", (req, res) => {
-	console.log("DEBUG: POST /score called");
-
+	console.log("DEBUG: POST /score called (Sprint mode)");
 	const { name, score } = req.body;
-
 	if (!name || typeof score !== "number" || !users[name]) {
 		console.log("DEBUG: Invalid request:", { name, score });
 		return res.status(400).json({ error: "Invalid request" });
 	}
-
 	users[name].scores.push(score);
 	users[name].totalGames += 1;
 	saveUsers();
-
-	console.log("DEBUG: Score submitted:", { name, score });
+	console.log("DEBUG: Sprint score submitted:", { name, score });
 	res.json({ success: true, user: users[name] });
 });
 
-// --- Get top 10 scores (leaderboard) ---
+// --- Submit a score for Blitz mode ---
+app.post("/score-blitz", (req, res) => {
+	console.log("DEBUG: POST /score-blitz called (Blitz mode)");
+	const { name, score } = req.body;
+	if (!name || typeof score !== "number" || !users[name]) {
+		console.log("DEBUG: Invalid request:", { name, score });
+		return res.status(400).json({ error: "Invalid request" });
+	}
+	
+	// Ensure blitzScores array exists
+	if (!users[name].blitzScores) {
+		users[name].blitzScores = [];
+	}
+	
+	users[name].blitzScores.push(score);
+	users[name].totalGames += 1;
+	saveUsers();
+	console.log("DEBUG: Blitz score submitted:", { name, score });
+	res.json({ success: true, user: users[name] });
+});
+
+// --- Get top 10 Sprint scores (leaderboard) ---
 app.get("/leaderboard", (req, res) => {
-	console.log("DEBUG: GET /leaderboard called");
-
+	console.log("DEBUG: GET /leaderboard called (Sprint mode)");
 	let bestScores = [];
-
 	for (let name in users) {
 		let userScores = users[name].scores;
 		if (userScores.length === 0) continue;
-
 		let bestScore = Math.min(...userScores); // best time = lowest score
 		bestScores.push({ name, score: bestScore });
 	}
-
 	bestScores.sort((a, b) => a.score - b.score);
-
 	const topScores = bestScores.slice(0, 10);
+	console.log("DEBUG: Returning Sprint leaderboard:", topScores);
+	res.json(topScores);
+});
+
+// --- Get top 10 Blitz scores (leaderboard) ---
+app.get("/leaderboard-blitz", (req, res) => {
+	console.log("DEBUG: GET /leaderboard-blitz called (Blitz mode)");
+	let bestScores = [];
+	for (let name in users) {
+		// Ensure blitzScores exists
+		if (!users[name].blitzScores) {
+			users[name].blitzScores = [];
+		}
+		
+		let userScores = users[name].blitzScores;
+		if (userScores.length === 0) continue;
+		let bestScore = Math.max(...userScores); // best score = highest score
+		bestScores.push({ name, score: bestScore });
+	}
+	bestScores.sort((a, b) => b.score - a.score); // Sort descending (highest first)
+	const topScores = bestScores.slice(0, 10);
+	console.log("DEBUG: Returning Blitz leaderboard:", topScores);
 	res.json(topScores);
 });
 
