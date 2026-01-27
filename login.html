@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <style>
+      body{
+        background-image:url("https://images.unsplash.com/photo-1559825481-12a05cc00344?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8b2NlYW4lMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+      }
+      .login-header{
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;
+        color: white;
+        text-shadow: 2px 2px 4px black;
+        font-size: 30px;
+        margin-bottom: 30px
+      }
+      .login-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        padding: 30px;
+        background: black;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      }
+      .login-input{
+        width: 93%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+      .login-input:focus {
+        outline: none;
+        border-color: rgba(100, 200, 255, 0.8);
+        box-shadow: 0 0 10px rgba(100, 200, 255, 0.5);
+      }
+      .login-button {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(145deg, #6366f1, #4f46e5);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .login-button:hover{
+        background: linear-gradient(145deg, #4f46e5, #6366f1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3)
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class = "login-header">Login</h1>
+    <div class="login-container">
+      <input type="text" class="login-input" id="username-input" placeholder="Password">
+      <button class="login-button" id="login-button">Login</button>
+      <p id="error-message" style="color: red; margin-top: 15px;"></p>
+      <p style="color: white; margin-top: 20px;">Don't have an account? <a href="index.html" style="color: #6366f1; text-decoration: none;">Register</a></
+    </div>
+    <script>
+      const API = "https://family-complete-walked-borders.trycloudflare.com";
+      const loginButton = document.getElementById('login-button');
+      const usernameInput = document.getElementById('username-input');
+      const errorMessage = document.getElementById('error-message');
+    </script>
+  </body>
+</html>
