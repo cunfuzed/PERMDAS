@@ -350,11 +350,11 @@
           } else {
             mistakes++;
             paused = true;
-            equationElement.innerHTML = "Wrong answer<br>3 second penalty";
+            equationElement.innerHTML = "Wrong answer<br>0.5 second penalty";
             setTimeout(() => {
               paused = false;
               updateEquation();
-            }, 3000);
+            }, 500);
           }
           keypresses = 0;
           answerBox.value = "";
