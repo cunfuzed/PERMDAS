@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Customization</title>
+    <style>
+      .header{
+        text-align: center;
+        font-size: 50px;
+        font-family: "Courier New", Courier, monospace;
+        color: white;
+        text-shadow: 2px 2px 4px black;
+        margin-bottom: 50px;
+      }
+      .back{
+        padding: 15px 50px 15px 80px;
+        clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+        position: absolute;
+        color: red;
+        backdrop-filter: blur(10px);
+        background-color:rgba(0, 0, 0, 0.3);
+        top: 0px;
+        left: -50px;
+        font-size: 30px;
+        border: none; 
+        cursor: pointer;
+        font-family: "Courier New", Courier, monospace;
+        transition: all 0.3s ease;
+      }
+      .back:hover{
+        transform: translateX(50px);
+      }
+      .back:active{
+        transform: translateX(50px) translateY(2px);
+      }
+      
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      
+      .section {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        margin: 15px 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .section-header {
+        background: rgb(50, 100, 150, 0.2);
+        padding: 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Courier New', Courier, monospace;
+        color: white;
+        font-size: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .section-header:hover {
+        background: rgba(50, 100, 150, 0.3);
+      }
+
+      .section-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        padding: 0 20px;
+        color: white;
+        font-family: 'Courier New', Courier, monospace;
+      }
+
+      .section-content.expanded {
+        padding: 20px;
+      }
+
+      .arrow {
+        transition: transform 0.3s ease;
+      }
+
+      .arrow.rotated {
+        transform: rotate(180deg);
+      }
+      
+      #drop-zone {
+        width: 100%;
+        height: 150px;
+        margin: 20px 0;
+        border: 3px dashed rgba(255, 255, 255, 0.5);
+        border-radius: 15px;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      #drop-zone:hover {
+        border-color: rgba(100, 200, 255, 0.8);
+        background: rgba(100, 200, 255, 0.2);
+        transform: scale(1.02);
+      }
+      
+      .drop-text {
+        font-size: 16px;
+        margin: 5px;
+      }
+      
+      .drop-subtext {
+        font-size: 12px;
+        color: rgba(255,255,255,0.7);
+      }
+      
+      .reset-btn {
+        padding: 12px 30px;
+        background: rgba(255, 100, 100, 0.9);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 15px;
+      }
+      
+      .reset-btn:hover {
+        background: rgba(255, 100, 100, 1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      }
+      
+      .color-option {
+        display: inline-block;
+        margin: 10px;
+      }
+      
+      .color-option label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+      
+      .color-option input[type="color"] {
+        width: 60px;
+        height: 40px;
+        border: 2px solid rgba(255,255,255,0.5);
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      .toggle-option {
+        margin: 15px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      .toggle-option input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+      
+      .shortcut-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        border-radius: 8px;
+        margin: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .key-display {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-weight: bold;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      
+      body {
+        background-image: url("https://images.unsplash.com/photo-1509149037-37dc57ccbd13?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2xpZmYlMjBlZGdlfGVufDB8fDB8fHww");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="back" onclick="window.location.href='home.html'">Back</button>
+    
+    <h1 class="header">Customization</h1>
+    
+    <div class="container">
+      <!-- Background Settings Section -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection(this)">
+          <span>Background Settings</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="section-content">
+          <p>Upload your own background image to make the texts more readable</p>
+          <div id="drop-zone">
+            <p class="drop-text">Drop your image here</p>
+            <p class="drop-subtext">or click to browse</p>
+            <input type="file" id="background-upload" accept="image/*" style="display: none;">
+          </div>
+          <button class="reset-btn" onclick="resetBackground()">Reset to Default</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header" onclick="toggleSection(this)">
+          <span>Sounds</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="section-content">
+          <p>Enable or disable sound effects during gameplay</p>
+          <div class="toggle-option">
+            <input type="checkbox" id="sound-enabled" checked>
+            <label for="sound-enabled">Enable Sound Effects</label>
+          </div>
+          <div class="toggle-option">
+            <input type="checkbox" id="music-enabled">
+            <label for="music-enabled">Enable Background Music</label>
+          </div>
+          <div class="toggle-option">
+            <input type="checkbox" id="correct-sound" checked>
+            <label for="correct-sound">Play sound on correct answer</label>
+          </div>
+          <div class="toggle-option">
+            <input type="checkbox" id="wrong-sound" checked>
+            <label for="wrong-sound">Play sound on wrong answer</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header" onclick="toggleSection(this)">
+          <span>Controls</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="section-content">
+          <p>Customize keys for optimal typing speed (varies by personal preference)</p>
+          <div class="shortcut-item">
+            <span>Reset Game</span>
+            <input type="text" id="reset_game" value="r">
+          </div>
+          <div class="shortcut-item">
+            <span>Submit Answer</span>
+            <input type="text" id="answer_question" value="enter">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      const dropZone = document.getElementById('drop-zone');
+      const fileInput = document.getElementById('background-upload');
+      const originalBackground = "url('https://images.unsplash.com/photo-1509149037-37dc57ccbd13?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2xpZmYlMjBlZGdlfGVufDB8fDB8fHww')";
+      const answerQuestion = document.getElementById('answer_question')
+      const resetGame = document.getElementById('reset_game')
+      const soundEnabled = document.getElementById('sound-enabled');
+      const musicEnabled = document.getElementById('music-enabled');
+      const correctSound = document.getElementById('correct-sound');
+      const wrongSound = document.getElementById('wrong-sound');
+
+      function toggleSection(header) {
+        const content = header.nextElementSibling;
+        const arrow = header.querySelector('.arrow');
+        
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          content.classList.remove('expanded');
+          arrow.classList.remove('rotated');
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.classList.add('expanded');
+          arrow.classList.add('rotated');
+        }
+      }
+
+      // Click to upload
+      dropZone.addEventListener('click', () => {
+        fileInput.click();
+      });
+
+      // Drag and drop
+      dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = 'rgba(100, 200, 255, 0.8)';
+        dropZone.style.background = 'rgba(100, 200, 255, 0.2)';
+      });
+
+      dropZone.addEventListener('dragleave', () => {
+        dropZone.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+        dropZone.style.background = 'rgba(0, 0, 0, 0.3)';
+      });
+
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+        dropZone.style.background = 'rgba(0, 0, 0, 0.3)';
+        
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+          handleImageUpload(file);
+        }
+      });
+
+      fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          handleImageUpload(file);
+        }
+      });
+
+      function handleImageUpload(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const imageData = e.target.result;
+          document.body.style.backgroundImage = `url('${imageData}')`;
+          localStorage.setItem('customBackground', imageData);
+          dropZone.innerHTML = '<p class="drop-text">Background Updated</p>';
+          setTimeout(() => {
+            dropZone.innerHTML = '<p class="drop-text">Drop your image here</p><p class="drop-subtext">or click to browse downloaded images</p>';
+          }, 2000);
+        };
+        reader.readAsDataURL(file);
+      }
+      
+      function resetBackground() {
+        document.body.style.backgroundImage = originalBackground;
+        localStorage.removeItem('customBackground');
+        dropZone.innerHTML = '<p class="drop-text">Reset to Default</p>';
+        setTimeout(() => {
+          dropZone.innerHTML = '<p class="drop-text">Drop your image here</p><p class="drop-subtext">or click to browse downloaded images</p>';
+        }, 2000);
+      }
+
+      // Load saved background on page load
+      window.addEventListener('load', () => {
+        const savedBg = localStorage.getItem('customBackground');
+        if (savedBg) {
+          document.body.style.backgroundImage = `url('${savedBg}')`;
+        }
+      });
+
+      //keybinds
+      answerQuestion.addEventListener("keyup",(event)=>{
+        localStorage.setItem("answer_question", event.key);
+        answerQuestion.value = event.key.toString();
+      });
+      resetGame.addEventListener("keyup",(event)=>{
+        localStorage.setItem("reset_game", event.key);
+        resetGame.value = event.key.toString();
+        
+      });
+
+      //setting the displayed keybinds to the ones selected
+      answerQuestion.value = localStorage.getItem("answer_question");
+      resetGame.value = localStorage.getItem("reset_game");
+
+      //checking if sounds are set
+      soundEnabled.checked = localStorage.getItem('soundEnabled') === 'true';
+      musicEnabled.checked = localStorage.getItem('musicEnabled') === 'true';
+      correctSound.checked = localStorage.getItem('correctSound') === 'true';
+      wrongSound.checked = localStorage.getItem('wrongSound') === 'true';
+      
+      //sounds
+      soundEnabled.addEventListener('change', () => {
+        localStorage.setItem('soundEnabled', soundEnabled.checked);
+      });
+
+      musicEnabled.addEventListener('change', () => {
+        localStorage.setItem('musicEnabled', musicEnabled.checked);
+      });
+
+      correctSound.addEventListener('change', () => {
+        localStorage.setItem('correctSound', correctSound.checked);
+      });
+
+      wrongSound.addEventListener('change', () => {
+        localStorage.setItem('wrongSound', wrongSound.checked);
+      });
+    </script>
+  </body>
+</html>
