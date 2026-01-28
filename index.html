@@ -113,12 +113,12 @@
             
             // Save username locally
             localStorage.setItem('username', username);
-
+              
+            // Go to main page
+            window.location.href = 'home.html';
           }else{
             alert(data.msg)
           }
-          // Go to main page
-          window.location.href = 'home.html';
         })
         .catch(err => console.error("Failed to register username:", err));
       });
