@@ -120,8 +120,9 @@
         .then(res => res.json())
         .then(data => {
           if(data.loginSucess == true){
-            // localStorage.username = username
-            alert("login worked")
+            localStorage.username = usernameInput;
+            localStorage.passwordHash = passwordHash;
+            location.href = "/PERMDAS/home";
           }else{
             alert("login failed")
           }
