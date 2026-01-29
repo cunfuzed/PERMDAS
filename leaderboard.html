@@ -75,6 +75,23 @@
         color: white;
         text-shadow: 2px 2px 4px black
       }
+      .force-update{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 10px;
+        color: white;
+        font-family: "Courier New", Courier, monospace;
+        cursor: pointer;
+        transition: all 0.5s ease;
+      }
+      .force-update:hover{
+        transform: translateX(-3px);
+        box-shadow: 0 10px 20px rgba(200,0,0,0.5)
+      }
       body{
         background-image: url("https://thriftyjinxy.com/wp-content/uploads/2018/06/bao-dumpling-baby.jpg");
         background-size: cover;
@@ -103,8 +120,63 @@
       <h2 class="gamemode-title">Blitz</h2>
       <div id="leaderboard-blitz" class="list">Loading...</div>
     </div>
+    <button class="force-update" id = "forcePush">Force Update</button>
     
     <script>
+      //force push stuff
+      const sprintBest = parseInt(localStorage.getItem("bestTime"));
+      const blitzBest = parseInt(localStorage.getItem("bestScore"));
+      function submitSprintScore(finalTime) {
+        const username = localStorage.getItem("username");
+
+        if (!username) {
+          console.error("No username found in localStorage");
+          return;
+        }
+
+        fetch(API + "/score", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: username,
+            score: finalTime
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log("Score submitted:", data.user);
+        })
+        .catch(err => console.error("Score submit failed:", err));
+      }
+      function submitBlitzScore(finalScore){
+        const username = localStorage.getItem("username");
+
+        if (!username) {
+          console.error("No username found in localStorage");
+          return;
+        }
+
+        fetch(API + "/score-blitz", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: username,
+            score: finalScore
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log("Score submitted:", data.user);
+        })
+        .catch(err => console.error("Score submit failed:", err));
+      }
+      const forcePush = document.getElementById("forcePush");
+      forcePush.addEventListener("click", () =>{
+        submitSprintScore(sprintBest);
+        submitBlitzScore(blitzBest);
+        window.location.reload();
+      });
+      
       const API = "https://family-complete-walked-borders.trycloudflare.com";
       
       // Function to create leaderboard display
