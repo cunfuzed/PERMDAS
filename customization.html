@@ -308,7 +308,7 @@
         //on the low chance the user actually types his password 2 times in a row:
         if(newPasswordInput == confirmPasswordInput){
           var oldPasswordHash = secureHash(oldPasswordInput);
-          var newPasswordHash = secureHash(nemPasswordInput);
+          var newPasswordHash = secureHash(newPasswordInput);
           fetch(API + "/setPassword", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
