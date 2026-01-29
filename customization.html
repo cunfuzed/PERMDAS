@@ -309,7 +309,7 @@
         if(newPasswordInput == confirmPasswordInput){
           var oldPasswordHash = secureHash(oldPasswordInput);
           var newPasswordHash = secureHash(nemPasswordInput);
-          fetch(API + "/setpassword", {
+          fetch(API + "/setPassword", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
