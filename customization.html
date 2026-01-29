@@ -293,9 +293,43 @@
       const musicEnabled = document.getElementById('music-enabled');
       const correctSound = document.getElementById('correct-sound');
       const wrongSound = document.getElementById('wrong-sound');
+      async function secureHash(message) {
+        const msgUint8 = new TextEncoder().encode(message);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+      }
 
-
-      function setPassword(){}
+      function setPassword(){ //no ai
+        var oldPasswordInput = document.getElementById("old-password").value
+        var newPasswordInput = document.getElementById("new-password").value
+        var confirmPasswordInput = document.getElementById("confirm-new-password").value
+        //on the low chance the user actually types his password 2 times in a row:
+        if(newPasswordInput == confirmPasswordInput){
+          var oldPasswordHash = secureHash(oldPasswordInput);
+          var newPasswordHash = secureHash(nemPasswordInput);
+          fetch(API + "/setpassword", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username: localStorage.username,
+              oldPasswordHash: oldPasswordHash,
+              newPasswordHash: newPasswordHash,
+            })
+          })
+          .then(res => res.json())
+          .then(data => {
+            if(data.success == true){
+              
+            }else{
+              
+            }
+          })
+        }else{ //most likeley
+          alert("new password not equal to confirm password")
+        }
+      }
       
       function toggleSection(header) {
         const content = header.nextElementSibling;
