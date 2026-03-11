@@ -21,7 +21,7 @@
         color: gray;
         font-family: "Courier New", Courier, monospace;
       }
-      #scene-button{
+      .scene-button{
         text-align: left;
         font-family: "Courier New", Courier, monospace;
         clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 10% 100%);
@@ -37,11 +37,11 @@
         transition: all 0.3s ease;
         white-space: nowrap;
       }
-      #scene-button:hover{
+      .scene-button:hover{
         transform: translateX(100px);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
       }
-      #scene-button:active{
+      .scene-button:active{
         transform: translateY(0);
       }
       .multiplayer{
@@ -63,11 +63,12 @@
         background: purple;
       }
       body {
-        background-image: url("https://images.unsplash.com/photo-1509149037-37dc57ccbd13?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2xpZmYlMjBlZGdlfGVufDB8fDB8fHww");
+        background-image: url("images/billy-pasco-mpMaD_BzP8I-unsplash.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
+        overflow-x: hidden; /* so that the buttons doesn't create a horizontal scrollbar because the buttons are so large. I'm not sure how to adjust the button size to stop at the edge of the viewport, someone else can figure that out */
       }
 
     </style>
@@ -76,12 +77,12 @@
   <body>
     <h1 class = "header" id = "header">PERMDAS</h1>
     <p class = "text">paranthesis exponent/root multiplication/division addition/subtraction</p>
-    <button class="multiplayer" id = "scene-button" onclick="window.location.href='multiplayer.html'">Multiplayer (INDEV)</button>
-    <button class="modes" id = "scene-button" onclick="window.location.href='modes.html'">Single Player Modes</button>
-    <button class="bhms" id = "scene-button" onclick="window.location.href='bhms.html'">BHMS Competition 2026</button>
-    <button class="customization" id = "scene-button" onclick="window.location.href='customization.html'">Customization</button>
-    <button class="stats" id = "scene-button" onclick="window.location.href='stats.html'">Stats</button>
-    <button class="credits" id = "scene-button" onclick="window.location.href='credits.html'">Credits</button>
+    <a href="multiplayer.html"><button class="multiplayer scene-button">Multiplayer (INDEV)</button></a>
+    <a href="modes.html"><button class="modes scene-button">Single Player Modes</button></a>
+    <a href="bhms.html"><button class="bhms scene-button">BHMS Competition 2026</button></a>
+    <a href="customization.html"><button class="customization scene-button">Customization</button></a>
+    <a href="stats.html"><button class="stats scene-button">Stats</button></a>
+    <a href="credits.html"><button class="credits scene-button">Credits</button></a>
     <audio id = "intro" autoplay></audio>
     <audio id = "loop" autoplay loop></audio>
     
