@@ -2,102 +2,158 @@
 <html>
   <head>
     <script src="../config.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Freefall</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
     <style>
-      .back{
-        backdrop-filter: blur(10px);
-        padding: 15px 50px 15px 80px;
-        clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
-        position: absolute;
-        color: red;
-        background-color:rgba(0, 0, 0, 0.3);
-        top: 0px;
-        left: -50px;
-        font-size: 30px;
-        border: none;
-        cursor: pointer;
-        font-family: "Courier New", Courier, monospace;
-        transition: all 0.3s ease;
-      }
-      .back:hover{
-        transform: translateX(50px)
-      }
-      .answer-box{
+      .answer-box {
         display: block;
         width: 400px;
         height: 100px;
         margin: 50px auto 0;
         font-size: 20px;
         text-align: center;
-        border-radius: 10px;
+        resize: none;
       }
-      .header{
+      .header {
         text-align: center;
         font-size: 50px;
         font-family: "Courier New", Courier, monospace;
-        color: aquamarine;
       }
-      .box{
-        position: fixed;
-        top: 0;
-        left: 10%;
-        width: 80%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(2px);
-        z-index: -1
-      }
-      .equation{
-        color: white;
+      .equation {
         margin-top: 100px;
         text-align: center;
+        font-size: 60px;
         font-family: "Courier New", Courier, monospace;
-        font-size: 35px;
       }
-      .aps{
-        font-size: 20px;
-        position: absolute;
-        top: 42%;
-        right: 15%;
-        font-family: "Courier New", Courier, monospace;
-        color: white;
-        text-shadow: 2px 2px 4px black;
-        z-index: 10
-      }
-      .reading-time{
-        font-size: 20px;
-        position: absolute;
-        top: 47%;
-        right: 15%;
-        font-family: "Courier New", Courier, monospace;
-        color: white;
-        text-shadow: 2px 2px 4px black;
-        z-index: 10;
-      }
-      .typing-time{
-        font-size: 20px;
-        position: absolute;
-        top: 52%;
-        right: 15%;
-        font-family: "Courier New", Courier, monospace;
-        color: white;
-        text-shadow: 2px 2px 4px black;
-        z-index: 10;
-      }
-      .timer{
-        font-size: 20px;
+      .timer {
+        font-size: 25px;
         text-align: center;
         font-family: "Courier New", Courier, monospace;
-        color: white;
-        text-shadow: 2px 2px 4px black;
       }
-      .highscore{
+      .highscore {
         position: absolute;
         font-family: "Courier New", Courier, monospace;
         top: 60px;
         right: 16%;
         font-size: 25px;
       }
-      .record{
+      .stat-box {
+        position: absolute;
+        top: 300px;
+        right: 200px;
+        width: 250px;
+        height: 175px;
+        text-align: left;
+        font-size: 20px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .box {
+        position: fixed;
+        top: 0;
+        left: 10%;
+        width: 80%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        z-index: -1;
+      }
+      .back {
+        backdrop-filter: blur(10px);
+        padding: 15px 50px 15px 80px;
+        clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+        position: absolute;
+        color: red;
+        background-color: rgba(0, 0, 0, 0.3);
+        top: 0px;
+        left: -50px;
+        font-size: 30px;
+        border: none;
+        cursor: pointer;
+        font-family: "Courier New", Courier, monospace;
+        z-index: 3;
+        transition: all 0.3s ease;
+      }
+      .back:hover {
+        transform: translateX(50px);
+      }
+      .menu-screen-info {
+        position: fixed;
+        left: 20%;
+        width: 60%;
+        height: 15%;
+        font-size: 30px;
+        font-weight: 800;
+        font-family: Arial, sans-serif;
+        background-color: rgb(20, 20, 50);
+        color: rgb(76, 98, 214);
+        z-index: 2;
+        box-shadow: 2px 2px 5px black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+      }
+      .menu-screen-start {
+        position: fixed;
+        top: 20%;
+        left: 20%;
+        width: 60%;
+        height: 15%;
+        font-size: 20px;
+        font-family: "Courier New", Courier, monospace;
+        background-color: rgb(20, 20, 50);
+        color: rgb(76, 98, 214);
+        z-index: 2;
+        box-shadow: 2px 2px 5px black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+      }
+      .menu-screen-options {
+        position: fixed;
+        top: 40%;
+        left: 20%;
+        width: 60%;
+        height: 25%;
+        font-size: 20px;
+        font-family: "Courier New", Courier, monospace;
+        background-color: rgb(20, 20, 50);
+        color: rgb(76, 98, 214);
+        z-index: 2;
+        box-shadow: 2px 2px 5px black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+      }
+      .start-button {
+        width: 150px;
+        height: 50px;
+        translate: 100px;
+        background-color: rgb(30, 48, 145);
+        border: 1px black solid;
+        font-size: 30px;
+        color: rgb(76, 98, 214);
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px black;
+        cursor: pointer;
+        animation: shine 2s infinite alternate;
+      }
+      body {
+        background-image: url("https://images.pexels.com/photos/2086917/pexels-photo-2086917.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: white;
+      }
+      .record {
         position: absolute;
         top: 40%;
         left: 50%;
@@ -109,7 +165,7 @@
         animation: record 5s forwards;
         pointer-events: none;
       }
-      .second-record{
+      .second-record {
         position: absolute;
         top: 40%;
         left: 50%;
@@ -119,380 +175,746 @@
         color: yellow;
         font-family: 'Exo', sans-serif;
         animation: secondRecord 5s forwards;
-        pointer-events: none
+        pointer-events: none;
       }
-      @keyframes record{
-        0% {transform: translate(-50%, -40%) scale(1); opacity:1;}
-        50% {transform: translate(-50%, -40%) scale(5); opacity:0.5;}
-        100% {transform: translate(-50%, -40%) scale(10); opacity:0;}
+      @keyframes record {
+        0%   { transform: translate(-50%, -40%) scale(1);   opacity: 1; }
+        50%  { transform: translate(-50%, -40%) scale(5);   opacity: 0.5; }
+        100% { transform: translate(-50%, -40%) scale(10);  opacity: 0; }
       }
-      @keyframes secondRecord{
-        0% {transform: translate(-50%, -40%) scale(1); opacity:0.5;}
-        50% {transform: translate(-50%, -40%) scale(7.5); opacity:0.25;}
-        100% {transform: translate(-50%, -40%) scale(15); opacity:0;}
+      @keyframes secondRecord {
+        0%   { transform: translate(-50%, -40%) scale(1);   opacity: 0.5; }
+        50%  { transform: translate(-50%, -40%) scale(7.5); opacity: 0.25; }
+        100% { transform: translate(-50%, -40%) scale(15);  opacity: 0; }
       }
-      body{
-        background-image: url("https://images.pexels.com/photos/2086917/pexels-photo-2086917.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to   { opacity: 0; }
+      }
+      @keyframes shine {
+        from { background-color: rgb(20, 20, 50); }
+        to   { background-color: rgb(30, 50, 190); }
+      }
+      .countdown-overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        pointer-events: none;
+      }
+      .countdown-number {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 200px;
+        font-weight: bold;
         color: white;
+        text-shadow: 0 0 40px rgba(255,255,150,0.9), 0 0 80px rgba(255,255,0,0.5);
+        animation: countPop 0.9s ease-out forwards;
+      }
+      .countdown-go {
+        font-size: 130px;
+        color: #aaff66;
+        text-shadow: 0 0 40px rgba(100,255,50,0.9), 0 0 80px rgba(80,220,30,0.5);
+      }
+      @keyframes countPop {
+        0%   { transform: scale(1.8); opacity: 1; }
+        60%  { transform: scale(1.0); opacity: 1; }
+        100% { transform: scale(0.6); opacity: 0; }
+      }
+      .results-overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(12px);
+        z-index: 50;
+        animation: fadeIn 0.4s ease forwards;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+      .results-card {
+        background-color: rgb(20, 20, 50);
+        border: 1px solid rgba(76, 98, 214, 0.4);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+        width: 60%;
+        padding: 36px 48px 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        color: white;
+      }
+      .results-title {
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: 4px;
+        color: rgb(76, 98, 214);
+        text-transform: uppercase;
+        margin: 0 0 4px;
+      }
+      .results-subtitle {
+        font-size: 12px;
+        color: rgba(255,255,255,0.35);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin: 0 0 22px;
+      }
+      .results-time {
+        font-size: 80px;
+        font-weight: 800;
+        color: #ffe84a;
+        line-height: 1;
+        letter-spacing: -2px;
+        margin: 0;
+      }
+      .results-time-unit {
+        font-size: 30px;
+        color: rgba(255,232,74,0.65);
+        margin-left: 3px;
+      }
+      .results-time-label {
+        font-size: 11px;
+        color: rgba(255,255,255,0.35);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin: 4px 0 0;
+      }
+      .results-pb-badge {
+        clip-path: polygon(20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%, 0% 50%);
+        background: yellow;
+        color: black;
+        height: 13px;
+        text-align: center;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        padding: 10px 14px;
+        margin: 16px 0 0;
+        text-transform: uppercase;
+      }
+      .results-divider {
+        width: 100%;
+        height: 1px;
+        background: rgba(76, 98, 214, 0.35);
+        margin: 20px 0;
+      }
+      .results-stats {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 20px;
+        column-gap: 8px;
+      }
+      .results-stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+      .results-stat-label {
+        font-size: 10px;
+        color: rgba(255,255,255,0.38);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      .results-stat-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: white;
+        text-align: center;
+        line-height: 1;
+      }
+      .results-stat-value.accent { color: rgb(100, 130, 255); }
+      .results-stat-value.good   { color: #aaff66; }
+      .results-buttons {
+        display: flex;
+        gap: 12px;
+        width: 100%;
+        margin-top: 4px;
+      }
+      .results-btn {
+        flex: 1;
+        padding: 13px 0;
+        border: none;
+        border-radius: 6px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.15s ease;
+      }
+      .results-btn-primary {
+        background: rgb(76, 98, 214);
+        color: white;
+      }
+      .results-btn-primary:hover {
+        background: rgb(100, 125, 240);
+        transform: translateY(-2px);
+      }
+      .results-btn-secondary {
+        background: rgba(255,255,255,0.07);
+        color: rgba(255,255,255,0.55);
+        border: 1px solid rgba(255,255,255,0.15);
+      }
+      .results-btn-secondary:hover {
+        background: rgba(255,255,255,0.13);
+        transform: translateY(-2px);
       }
     </style>
   </head>
   <body>
-    <div class = "box"></div>
-    <a href = ../modes.html><button class = "back">Back</button></a>
-    <p class = "highscore" id = "best-score">Best Score: __.__</p>
-    <h1 class = "header">Freefall</h1>
-    <p class = "equation" id = "equation">Loading...</p>
-    <p class = "timer" id = "timer">Time left: 20.00s</p>
-    <textarea class = "answer-box" id = "answer-box"></textarea>
-    <p class = "aps" id = "aps">APS: __.__</p>
-    <p class = "reading-time" id = "reading-time">Avg Read: 0.00s</p>
-    <p class = "typing-time" id = "typing-time">Avg Type: 0.00s</p>
+    <a href="../modes.html"><button class="back">Modes</button></a>
+
+    <!-- menu -->
+    <div class="menu-screen-info" id="menu-screen">
+      <div style="font-size:40px;align-items:center;">Freefall:
+        <div><div style="font-size:20px;">Solve equations before the timer runs out!</div></div>
+      </div>
+    </div>
+    <div class="menu-screen-start" id="menu-screen-start">Click to start:<button class="start-button">START</button></div>
+    <div class="menu-screen-options" id="menu-screen-options">
+      <div style="font-size:30px;">Info:</div>
+      -Simple survival, but with a twist...<br>
+      -Wrong answer = 1 second penalty<br>
+      -You may not submit to leaderboards without a password<br>
+      -You can create a password in customization<br>
+      -if you do not have a password, your password is blank<br>
+      -WARNING: contains negative numbers, as requested by baoism
+      
+    </div>
+
     <script>
-      if(!localStorage.passwordHash ||localStorage.passwordHash == "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"){
-        //alert("You cannot submit scores to the leaderboard without a password")
+      let gameStarted = false;
+
+      function startGame() {
+        gameStarted = true;
+        const ms_info    = document.getElementById("menu-screen");
+        const ms_start   = document.getElementById("menu-screen-start");
+        const ms_options = document.getElementById("menu-screen-options");
+
+        [ms_info, ms_start, ms_options].forEach(el => {
+          el.style.animation = "fadeOut 1s ease forwards";
+          el.addEventListener("animationend", () => el.remove());
+        });
+
+        const box = document.createElement("div");
+        box.className = "box";
+        document.body.appendChild(box);
+
+        const title = document.createElement("h1");
+        title.className = "header";
+        title.textContent = "Freefall";
+        document.body.appendChild(title);
+
+        const eq = document.createElement("p");
+        eq.className = "equation";
+        eq.id = "equation";
+        eq.textContent = "Loading...";
+        document.body.appendChild(eq);
+
+        const hs = document.createElement("p");
+        hs.className = "highscore";
+        hs.id = "best-score";
+        hs.textContent = "Best Score: --";
+        document.body.appendChild(hs);
+
+        const tm = document.createElement("p");
+        tm.className = "timer";
+        tm.id = "timer";
+        tm.textContent = "Time left: 20.00s";
+        document.body.appendChild(tm);
+
+        const statBox = document.createElement("div");
+        statBox.className = "stat-box";
+        document.body.appendChild(statBox);
+
+        const rt = document.createElement("p");
+        rt.id = "reading-time";
+        rt.textContent = "Avg Read: 0.00s";
+        statBox.appendChild(rt);
+
+        const tt = document.createElement("p");
+        tt.id = "typing-time";
+        tt.textContent = "Avg Type: 0.00s";
+        statBox.appendChild(tt);
+
+        const ap = document.createElement("p");
+        ap.id = "aps";
+        ap.textContent = "APS: __.__";
+        statBox.appendChild(ap);
+
+        const ab = document.createElement("textarea");
+        ab.className = "answer-box";
+        ab.id = "answer-box";
+        document.body.appendChild(ab);
       }
-      const answerBox = document.getElementById("answer-box");
-      const equationElement = document.getElementById("equation");
-      const timerElement = document.getElementById("timer");
+
+      // ── state ──
       const enterKey = localStorage.getItem("answer_question");
       const resetKey = localStorage.getItem("reset_game");
-      const readingTimeElement = document.getElementById("reading-time");
-      const typingTimeElement = document.getElementById("typing-time");
-      const bestScoreElement = document.getElementById("best-score");
-      const highScore = localStorage.getItem("freefallHighScore");
+      let highScore   = localStorage.getItem("freefallHighScore");
 
-      if(highScore!==null){
-        bestScoreElement.innerHTML = `Best Score: ${highScore}`;
-      }
-
-      let timeLeft = 2000;
-      let maxTime = 2000;
-      let timeMultiplier = 0.98;
-      let currentBag = [];
+      let timeLeft        = 2000;
+      let maxTime         = 2000;
+      let timeMultiplier  = 0.98;
+      let currentBag      = [];
       let currentEquationsInBag = [];
-      let operations = ["+", "-", "*", "/"];
+      let operations      = ["+", "-", "*", "/"];
       let currentOperator = operations[Math.floor(Math.random() * 4)];
-      let equationNum = 0;
-      let paused = false;
+      let equationNum     = 0;
+      let paused          = false;
       let equationsCompleted = 0;
-      let startTime = Date.now();
-      let timerInterval;
-      let timerStarted = false;
-      let problemPhase = "not started";
-      let phaseStartTime = Date.now();
+      let startTime       = Date.now();
+      let timerInterval, tickInterval;
+      let timerStarted    = false;
+      let problemPhase    = "not started";
+      let phaseStartTime  = Date.now();
       let totalReadingTime = 0;
-      let totalTypingTime = 0;
-      let recordType = false;
-      const apsElement = document.getElementById("aps");
-      
+      let totalTypingTime  = 0;
+      let recordType      = false;
+      let inputListenerAttached = false;
+      let mistakes        = 0;
+
+      let answerBox, equationElement, timerElement,
+          bestScoreElement, apsElement, readingTimeElement, typingTimeElement;
+
+      // ── helpers ──
       function updateAPS() {
         const elapsed = (Date.now() - startTime) / 1000;
-        if (elapsed > 0&&timeLeft>0) {
-          const aps = equationsCompleted / elapsed;
-          apsElement.textContent = `APS: ${aps.toFixed(2)}`;
+        if (elapsed > 0 && timeLeft > 0) {
+          apsElement.textContent = `APS: ${(equationsCompleted / elapsed).toFixed(2)}`;
         }
-
-        // Update average reading and typing times
         if (equationsCompleted > 0) {
-          const avgReading = (totalReadingTime / equationsCompleted / 1000).toFixed(2);
-          const avgTyping = (totalTypingTime / equationsCompleted / 1000).toFixed(2);
-          readingTimeElement.textContent = `Avg Read: ${avgReading}s`;
-          typingTimeElement.textContent = `Avg Type: ${avgTyping}s`;
+          readingTimeElement.textContent = `Avg Read: ${(totalReadingTime / equationsCompleted / 1000).toFixed(2)}s`;
+          typingTimeElement.textContent  = `Avg Type: ${(totalTypingTime  / equationsCompleted / 1000).toFixed(2)}s`;
         }
       }
 
-      function record(text){
-        const record = document.createElement("p");
-        record.className = "record";
-        record.textContent = text;
-        document.body.appendChild(record);
+      function record(text) {
+        const r = document.createElement("p");
+        r.className = "record";
+        r.textContent = text;
+        document.body.appendChild(r);
 
-        const secondRecord = document.createElement("p");
-        secondRecord.className = "second-record";
-        secondRecord.textContent = text;
-        document.body.appendChild(secondRecord);
-        console.log("Record animation created:", text);
+        const s = document.createElement("p");
+        s.className = "second-record";
+        s.textContent = text;
+        document.body.appendChild(s);
       }
-      
+
       function switchPhase(newPhase) {
-        // Record time spent in current phase
-        const phaseElapsed = Date.now() - phaseStartTime;
-
-        if (problemPhase === "reading") {
-          totalReadingTime += phaseElapsed;
-        } else if (problemPhase === "typing") {
-          totalTypingTime += phaseElapsed;
-        }
-
-        // Switch to new phase
-        problemPhase = newPhase;
+        const elapsed = Date.now() - phaseStartTime;
+        if (problemPhase === "reading")      totalReadingTime += elapsed;
+        else if (problemPhase === "typing")  totalTypingTime  += elapsed;
+        problemPhase   = newPhase;
         phaseStartTime = Date.now();
       }
 
       function startTimer() {
         if (timerStarted) return;
-        timerStarted = true;
-        startTime = Date.now();
+        timerStarted   = true;
+        startTime      = Date.now();
         phaseStartTime = startTime;
         switchPhase("reading");
         timerInterval = setInterval(() => {
-          const elapsed = (Date.now() - startTime) / 1000;
-          if(timerStarted){updateAPS();}
-        }, 50); // updates 20 times per second
+          if (timerStarted) updateAPS();
+        }, 50);
       }
 
-      function generateBag(){
+      function generateBag() {
         currentBag = [];
         currentEquationsInBag = [];
-        for(let i = 0; i < 8; i++){
-          //generating the operators
+        for (let i = 0; i < 8; i++) {
           currentOperator = operations[Math.floor(Math.random() * 4)];
           currentBag.push(currentOperator);
-          //generating the numbers
-          if(currentOperator!== "/"&&currentOperator!== "*"){
-            currentEquationsInBag.push([Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)]);
-          }else{
-            let num1 = Math.floor(Math.random() * 12);
-            let num2 = Math.floor(Math.random() * 12);
-            if(currentOperator==="/"){
-              if(num1 === 0){num1 = 1;}
-              if(num2 === 0){num2 = 1;}
+          if (currentOperator !== "/" && currentOperator !== "*") {
+            currentEquationsInBag.push([
+              Math.floor(Math.random() * 10),
+              Math.floor(Math.random() * 10)
+            ]);
+          } else {
+            let n1 = Math.floor(Math.random() * 12);
+            let n2 = Math.floor(Math.random() * 12);
+            if (currentOperator === "/") {
+              if (n1 === 0) n1 = 1;
+              if (n2 === 0) n2 = 1;
             }
-            currentEquationsInBag.push([num1, num2]);
+            currentEquationsInBag.push([n1, n2]);
           }
         }
       }
 
-      function displayOperater(){
-        switch(currentBag[equationNum]){
-          case "+":
-            return "+";
-          break;
-          case "-":
-            return "-";
-          break;
-          case "*":
-            return "×";
-          break;
-          case "/":
-            return "÷";
-          break;
-
+      function displayOperator() {
+        switch (currentBag[equationNum]) {
+          case "+": return "+";
+          case "-": return "-";
+          case "*": return "×";
+          case "/": return "÷";
         }
       }
 
-      function displayEquation(){
-        switch(currentBag[equationNum]){
-            case "+":
-              return currentEquationsInBag[equationNum][0] +" "+ displayOperater() +" "+ currentEquationsInBag[equationNum][1]+" = ";
-            break;
-            case "-":
-              return currentEquationsInBag[equationNum][0] +" "+ displayOperater() +" "+ currentEquationsInBag[equationNum][1]+" = ";
-            break;
-            case "*":
-              return currentEquationsInBag[equationNum][0] +" "+ displayOperater() +" "+ currentEquationsInBag[equationNum][1]+" = ";
-            break;
-            case "/":
-              return currentEquationsInBag[equationNum][0]*currentEquationsInBag[equationNum][1] +" "+ displayOperater() +" "+ currentEquationsInBag[equationNum][1]+" = ";
+      function displayEquation() {
+        const op  = currentBag[equationNum];
+        const [a, b] = currentEquationsInBag[equationNum];
+        if (op === "/") {
+          return `${a * b} ${displayOperator()} ${b} = `;
+        }
+        return `${a} ${displayOperator()} ${b} = `;
+      }
+
+      function findAnswer() {
+        const op  = currentBag[equationNum];
+        const [a, b] = currentEquationsInBag[equationNum];
+        switch (op) {
+          case "+": return a + b;
+          case "-": return a - b;
+          case "*": return a * b;
+          case "/": return a;
         }
       }
 
-      function findAnswer(){
-        switch(currentBag[equationNum]){
-            case "+":
-              return currentEquationsInBag[equationNum][0] + currentEquationsInBag[equationNum][1];
-            break;
-            case "-":
-              return currentEquationsInBag[equationNum][0] - currentEquationsInBag[equationNum][1];
-            break;
-            case "*":
-              return currentEquationsInBag[equationNum][0] * currentEquationsInBag[equationNum][1];
-            break;
-            case "/":
-              return currentEquationsInBag[equationNum][0];
-            break;
-        }
-      }
-
-      function findNewTime(){
-        maxTime = maxTime*timeMultiplier;
+      function findNewTime() {
+        maxTime  = maxTime * timeMultiplier;
         timeLeft = maxTime;
       }
 
-      function tickTime(){
-        if(timerStarted){timeLeft--;}
+      function tickTime() {
+        if (timerStarted && !paused) timeLeft--;
       }
 
-      function displayTime(){
-        timerElement.innerHTML = `Time left: ${(timeLeft/100).toFixed(2)}s`;
+      function displayTime() {
+        timerElement.textContent = `Time left: ${(timeLeft / 100).toFixed(2)}s`;
         updateAPS();
       }
 
       function submitFinalScore(finalScore) {
         const username = localStorage.getItem("username");
-      
         if (!username) {
-          console.error("No username found in localStorage");
+          console.error("No username found");
           return Promise.reject("No username");
         }
-      
         return fetch(API + "/score-freefall", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: username,
-            score: finalScore
+          body: JSON.stringify({ name: username, score: finalScore })
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log("Score submitted:", data.user);
+            return data;
           })
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log("Score submitted:", data.user);
-          return data;
-        })
-        .catch(err => {
-          console.error("Score submit failed:", err);
-          throw err;
+          .catch(err => {
+            console.error("Score submit failed:", err);
+            throw err;
+          });
+      }
+
+      function unlockAchievement(id) {
+        let a = JSON.parse(localStorage.getItem("unlockedAchievements") || "[]");
+        if (!a.includes(id)) {
+          a.push(id);
+          localStorage.setItem("unlockedAchievements", JSON.stringify(a));
+        }
+      }
+
+      // ── game over ──
+      function gameOver() {
+        timerStarted = false;
+        paused       = true;
+        answerBox.disabled = true;
+        clearInterval(timerInterval);
+        clearInterval(tickInterval);
+        timerElement.textContent = "Time left: 0.00s";
+        equationElement.innerHTML = `Time's Up! &nbsp;Equations Solved: ${equationsCompleted}`;
+
+        const isPB = highScore === null || equationsCompleted > Number(highScore);
+        if (isPB) {
+          highScore = equationsCompleted;
+          localStorage.setItem("freefallHighScore", equationsCompleted);
+          bestScoreElement.textContent = `Best Score: ${equationsCompleted}`;
+        }
+
+        const avgReadingTime = equationsCompleted > 0
+          ? (totalReadingTime / equationsCompleted / 1000).toFixed(2) : "0.00";
+        const avgTypingTime  = equationsCompleted > 0
+          ? (totalTypingTime  / equationsCompleted / 1000).toFixed(2) : "0.00";
+        const elapsed = (Date.now() - startTime) / 1000;
+        const apsVal  = equationsCompleted > 0
+          ? (equationsCompleted / elapsed).toFixed(2) : "0.00";
+
+        unlockAchievement("first_win");
+
+        const showResults = () => setTimeout(
+          () => showResultsScreen(equationsCompleted, avgReadingTime, avgTypingTime, apsVal, isPB),
+          800
+        );
+
+        if (isPB) {
+          submitFinalScore(equationsCompleted)
+            .then(() => new Promise(r => setTimeout(r, 500)))
+            .then(() => fetch(API + "/leaderboard-freefall"))
+            .then(res => {
+              if (!res.ok) throw new Error("bad response");
+              return res.json();
+            })
+            .then(data => {
+              const u = localStorage.getItem("username");
+              if (data[0] && data[0].name === u && data[0].score === equationsCompleted) {
+                record("WORLD RECORD");
+                recordType = true;
+              } else {
+                for (let i = 0; i < data.length; i++) {
+                  if (data[i].name === u && data[i].score === equationsCompleted) {
+                    if (i < 3)       { record("TOP 3");  recordType = true; break; }
+                    else if (i < 10) { record("TOP 10"); recordType = true; break; }
+                  }
+                }
+              }
+              if (!recordType) record("PERSONAL BEST");
+            })
+            .catch(err => {
+              console.error(err);
+              record("PERSONAL BEST");
+            })
+            .finally(showResults);
+        } else {
+          submitFinalScore(equationsCompleted);
+          showResults();
+        }
+      }
+
+      // ── countdown ──
+      function runCountdown(callback) {
+        const overlay = document.createElement("div");
+        overlay.className = "countdown-overlay";
+        document.body.appendChild(overlay);
+
+        const steps = ["Ready...", "Get set...", "GO"];
+        let i = 0;
+
+        function showNext() {
+          while (overlay.firstChild) overlay.removeChild(overlay.firstChild);
+          if (i >= steps.length) {
+            overlay.remove();
+            callback();
+            return;
+          }
+          const n = document.createElement("span");
+          n.className = "countdown-number" + (steps[i] === "GO" ? " countdown-go" : "");
+          n.textContent = steps[i];
+          overlay.appendChild(n);
+          i++;
+          setTimeout(showNext, 900);
+        }
+        showNext();
+      }
+
+      // ── results screen ──
+      function showResultsScreen(finalScore, avgReadingTime, avgTypingTime, apsVal, isPersonalBest) {
+        const pbText      = highScore !== null ? String(highScore) : "--";
+        const noMistake   = mistakes === 0;
+        const accuracyVal = noMistake
+          ? "100%"
+          : `${(finalScore / (finalScore + mistakes) * 100).toFixed(1)}%`;
+
+        const overlay = document.createElement("div");
+        overlay.className = "results-overlay";
+
+        const card = document.createElement("div");
+        card.className = "results-card";
+        card.innerHTML = `
+          <p class="results-title">Freefall Over</p>
+          <p class="results-subtitle">How far did you fall?</p>
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div>
+              <span class="results-time">${finalScore}</span>
+              <span class="results-time-unit">eq</span>
+            </div>
+            <div class="results-time-label">Equations Solved</div>
+          </div>
+          ${isPersonalBest
+            ? '<div class="results-pb-badge">Personal Best!</div>'
+            : '<div style="height:16px"></div>'
+          }
+          <div class="results-divider"></div>
+          <div class="results-stats">
+            <div class="results-stat-item">
+              <span class="results-stat-label">Avg Read</span>
+              <span class="results-stat-value accent">${avgReadingTime}s</span>
+            </div>
+            <div class="results-stat-item">
+              <span class="results-stat-label">Avg Type</span>
+              <span class="results-stat-value accent">${avgTypingTime}s</span>
+            </div>
+            <div class="results-stat-item">
+              <span class="results-stat-label">APS</span>
+              <span class="results-stat-value accent">${apsVal}</span>
+            </div>
+            <div class="results-stat-item">
+              <span class="results-stat-label">Accuracy</span>
+              <span class="results-stat-value ${noMistake ? "good" : ""}">${accuracyVal}</span>
+            </div>
+            <div class="results-stat-item">
+              <span class="results-stat-label">Mistakes</span>
+              <span class="results-stat-value ${noMistake ? "good" : ""}">${mistakes}</span>
+            </div>
+            <div class="results-stat-item">
+              <span class="results-stat-label">Best Score</span>
+              <span class="results-stat-value">${pbText}</span>
+            </div>
+          </div>
+          <div class="results-divider"></div>
+          <div class="results-buttons">
+            <button class="results-btn results-btn-primary" id="results-play-again">Play Again</button>
+            <button class="results-btn results-btn-secondary" id="results-menu">Modes</button>
+          </div>`;
+
+        overlay.appendChild(card);
+        document.body.appendChild(overlay);
+        document.getElementById("results-play-again").addEventListener("click", () => reset());
+        document.getElementById("results-menu").addEventListener("click", () => {
+          window.location.href = "../modes.html";
         });
       }
 
-      generateBag();
-      equationElement.innerHTML = displayEquation();
-      console.log(highScore);
-      setInterval(() =>{
-        displayTime();
-        tickTime();
-        if(paused)return;
-        if(timeLeft<=0){
-          timerStarted = false;
-          equationElement.innerHTML = `You failed to solve the equation in ${(maxTime/100).toFixed(2)} seconds<br>Equations Solved: ${equationsCompleted}`;
-          timerElement.innerHTML = "Time left: 0.00s";
-          paused = true;
-          answerBox.disabled = true;
-          
-          // Check if this is a new high score
-          if(equationsCompleted>highScore||highScore===null){
-            localStorage.setItem("freefallHighScore", equationsCompleted);
-            bestScoreElement.innerHTML = `Best Score: ${equationsCompleted}`;
-            
-            // FIRST: Submit the score
-            submitFinalScore(equationsCompleted)
-              .then(() => {
-                // Wait a bit for server to update
-                return new Promise(resolve => setTimeout(resolve, 500));
-              })
-              .then(() => {
-                // NOW check leaderboard position after score is submitted
-                return fetch(API + "/leaderboard-freefall");
-              })
-              .then(res => {
-                if (!res.ok) throw new Error('Network response was not ok');
-                return res.json();
-              })
-              .then(data => {
-                const username = localStorage.getItem("username");
-                console.log("=== LEADERBOARD CHECK (FREEFALL) ===");
-                console.log("Username:", username);
-                console.log("Final Score:", equationsCompleted);
-                console.log("Leaderboard data:", data);
-                console.log("First place:", data[0]);
-                
-                // Check for world record
-                if(data[0] && data[0].name === username && data[0].score === equationsCompleted){
-                  console.log("WORLD RECORD DETECTED!");
-                  record("WORLD RECORD");
-                  recordType = true;
-                }
-                // Check for top 3/top 10
-                else {
-                  for(let i = 0; i < data.length; i++){
-                    console.log(`Checking position ${i}: ${data[i].name} with score ${data[i].score}`);
-                    if(data[i].name === username && data[i].score === equationsCompleted){
-                      console.log(`Match found at position ${i}`);
-                      if(i < 3){
-                        console.log("TOP 3 DETECTED!");
-                        record("TOP 3");
-                        recordType = true;
-                        break;
-                      }
-                      else if(i < 10){
-                        console.log("TOP 10 DETECTED!");
-                        record("TOP 10");
-                        recordType = true;
-                        break;
-                      }
-                    }
-                  }
-                }
-                
-                console.log("Record type triggered:", recordType);
-                
-                // Show personal best only if no other record was triggered
-                if(!recordType){
-                  console.log("PERSONAL BEST DETECTED!");
-                  record("PERSONAL BEST");
-                } else {
-                  console.log("Personal best achieved but higher record type already shown");
-                }
-                
-                console.log("=== END LEADERBOARD CHECK ===");
-              })
-              .catch(err => {
-                console.error("Freefall leaderboard fetch failed:", err);
-                
-                // Still show personal best even if leaderboard fails
-                if(!recordType){
-                  record("PERSONAL BEST");
-                }
-              });
-          } else {
-            // Not a high score, just submit
-            submitFinalScore(equationsCompleted);
+      // ── input listeners ──
+      function checkForInput() {
+        if (!gameStarted || inputListenerAttached) return;
+        inputListenerAttached = true;
+
+        document.addEventListener("keydown", e => {
+          if (e.key === resetKey) {
+            reset();
+            e.preventDefault();
           }
-        }
-      }, 10)
-      
-      document.addEventListener("keydown",(event)=>{
-        if(event.key===resetKey){
-          location.reload();
-        }
-      });
-      
-      answerBox.addEventListener("keyup", (event) =>{
-        if (problemPhase === "reading"){switchPhase("typing");}
-        if(paused)return;
-        if (!timerStarted){timerStarted = true;}
-        if(event.key===enterKey){
-          if(Number(answerBox.value)===findAnswer()){
-            equationNum++;
-            if(equationNum>7){
-              equationNum = 0;
-              generateBag();
-            }
-            answerBox.value = "";
-            equationsCompleted++;
-            equationElement.textContent = displayEquation();
-            switchPhase("reading");
-            findNewTime();
-          }else{
-            answerBox.value = "";
-            paused = true;
-            equationElement.innerHTML = "Wrong answer<br>1 second penalty";
-            answerBox.disabled = true;
-            setTimeout(() =>{
-              paused = false;
-              answerBox.disabled = false;
+        });
+
+        answerBox.addEventListener("keyup", event => {
+          if (problemPhase === "reading") switchPhase("typing");
+          if (paused) return;
+          if (!timerStarted) {
+            timerStarted = true;
+            startTime    = Date.now();
+          }
+          if (event.key === enterKey) {
+            if (Number(answerBox.value) === findAnswer()) {
+              equationNum++;
+              if (equationNum > 7) {
+                equationNum = 0;
+                generateBag();
+              }
+              answerBox.value = "";
+              equationsCompleted++;
               equationElement.textContent = displayEquation();
-              answerBox.focus();
-            }, 1000);
+              switchPhase("reading");
+              findNewTime();
+            } else {
+              mistakes++;
+              answerBox.value = "";
+              paused = true;
+              equationElement.innerHTML = "Wrong answer<br>1 second penalty";
+              answerBox.disabled = true;
+              setTimeout(() => {
+                paused = false;
+                answerBox.disabled = false;
+                equationElement.textContent = displayEquation();
+                answerBox.focus();
+              }, 1000);
+            }
           }
+        });
+      }
+
+      // ── reset / play again ──
+      function reset() {
+        document.querySelectorAll(".results-overlay, .record, .second-record, .countdown-overlay")
+          .forEach(el => el.remove());
+
+        timeLeft         = 2000;
+        maxTime          = 2000;
+        equationsCompleted = 0;
+        mistakes         = 0;
+        equationNum      = 0;
+        totalReadingTime = 0;
+        totalTypingTime  = 0;
+        recordType       = false;
+        paused           = false;
+        problemPhase     = "not started";
+        timerStarted     = false;
+
+        clearInterval(timerInterval);
+        clearInterval(tickInterval);
+
+        timerElement.textContent       = "Time left: 20.00s";
+        readingTimeElement.textContent = "Avg Read: 0.00s";
+        typingTimeElement.textContent  = "Avg Type: 0.00s";
+        apsElement.textContent         = "APS: __.__";
+
+        generateBag();
+        answerBox.disabled = true;
+        answerBox.value    = "";
+
+        runCountdown(() => {
+          answerBox.disabled = false;
+          answerBox.focus();
+          equationElement.textContent = displayEquation();
+          startTimer();
+          tickInterval = setInterval(() => {
+            displayTime();
+            tickTime();
+            if (!paused && timeLeft <= 0) gameOver();
+          }, 10);
+        });
+      }
+
+      // ── start button ──
+      const startButton = document.querySelector(".start-button");
+
+      startButton.addEventListener("click", () => {
+        startGame();
+
+        answerBox          = document.getElementById("answer-box");
+        equationElement    = document.getElementById("equation");
+        timerElement       = document.getElementById("timer");
+        bestScoreElement   = document.getElementById("best-score");
+        apsElement         = document.getElementById("aps");
+        readingTimeElement = document.getElementById("reading-time");
+        typingTimeElement  = document.getElementById("typing-time");
+
+        if (highScore !== null) {
+          bestScoreElement.textContent = `Best Score: ${highScore}`;
         }
+
+        generateBag();
+        equationElement.textContent = "Loading...";
+        answerBox.disabled = true;
+
+        runCountdown(() => {
+          answerBox.disabled = false;
+          answerBox.focus();
+          equationElement.textContent = displayEquation();
+          startTimer();
+          checkForInput();
+          tickInterval = setInterval(() => {
+            displayTime();
+            tickTime();
+            if (!paused && timeLeft <= 0) gameOver();
+          }, 10);
+        });
       });
-      
+
+      window.addEventListener("load", () => {
+        const bg = localStorage.getItem("customBackground");
+        if (bg) document.body.style.backgroundImage = `url('${bg}')`;
+      });
     </script>
   </body>
 </html>
