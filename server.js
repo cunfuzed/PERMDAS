@@ -489,12 +489,15 @@ app.post("/setStats", (req, res) => {
     user.bestTime = bestTime;
     res.json({
       success: true,
-      trueBestScore: bestScore
+      trueBestScore: bestScore,
+      currentStats: user
     });
   } if (Math.min(...user.scores) < bestScore) {
     res.json({
       success: true,
-      trueBestScore: bestScore
+      trueBestScore: bestScore,
+      currentStats: user
+      
     });
   } else if (Math.min(...user.scores) > bestScore) {
     //they have a better best score, so add that time and then send back theri bestScore
@@ -508,7 +511,11 @@ app.post("/setStats", (req, res) => {
   user.wrongSound = wrongSound;
   user.answer_question = answer_question;
   user.reset_game = reset_game;
-  user.unlockedAchievements = unlockedAchievements;
+  // Merge achievements
+  const serverAchievements = user.unlockedAchievements || [];
+  const clientAchievements = unlockedAchievements || [];
+  
+  user.unlockedAchievements = [...new Set([...serverAchievements, ...clientAchievements])];
   saveUsers();
   console.log("Stats updated for", username);
 });
