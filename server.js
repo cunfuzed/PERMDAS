@@ -514,7 +514,9 @@ app.post("/setStats", (req, res) => {
   // Merge achievements
   const serverAchievements = user.unlockedAchievements || [];
   const clientAchievements = unlockedAchievements || [];
-  
+  if (typeof clientAchievements === "string") {
+	clientAchievements = JSON.parse(clientAchievements);
+}
   user.unlockedAchievements = [...new Set([...serverAchievements, ...clientAchievements])];
   saveUsers();
   console.log("Stats updated for", username);
