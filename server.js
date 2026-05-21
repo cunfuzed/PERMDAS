@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
 
-//YAY
+//AI chatbot, beta and not implemented. Please dont use
 async function generate(prompt, version = 1) {
   const models = {
     1: "qwen2.5:3b",
@@ -37,7 +37,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// File where data is stored
+// All data here:
 const DATA_FILE = "users.json";
 
 let rooms = {}; // key is rooms id
@@ -49,11 +49,11 @@ function Player(theirWS, name){
 function Room(id, type) {
   this.id = id;
   this.type = type;
-  this.players = []; //insidu gowes Player
+  this.players = []; //inside gowes Player
 }
 
 function genID() {
-  var chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  var chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // I removed some chars so you dont get confuzed btwn 0, O, etc
   var id = "";
   for (var i = 0; i < 3; i++) {
     id += chars[Math.floor(Math.random() * chars.length)];
@@ -61,7 +61,7 @@ function genID() {
   return id;
 
 }
-
+//create a duel
 function createDuel() {
   var room = new Room(genID(), "duel")
   return room;
@@ -70,10 +70,8 @@ function createDuel() {
 let users = {};
 
 if (fs.existsSync(DATA_FILE)) {
-  console.log("DATA_FILE exists. Loading users...");
   const data = fs.readFileSync(DATA_FILE, "utf8");
   users = JSON.parse(data);
-  console.log("Loaded users:", users);
 } else {
   console.log("No DATA_FILE found. Starting with empty users.");
 }
