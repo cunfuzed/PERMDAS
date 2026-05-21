@@ -1,0 +1,825 @@
+{
+  "2": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "10": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "123": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "543": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "6767676": {
+    "scores": [],
+    "totalGames": 2,
+    "totalEquations": 0,
+    "freeFallScores": [],
+    "blitzScores": [
+      28350,
+      37063
+    ]
+  },
+  "SilverNickel": {
+    "scores": [
+      54.207
+    ],
+    "totalGames": "13",
+    "totalEquations": "578",
+    "passwordHash": "c4511aa2ecd0e59b791a58503bc9748cdacb6b6973d69cc12495576958cda29b",
+    "blitzScores": [
+      14890
+    ],
+    "freeFallScores": [
+      65
+    ],
+    "soundEnabled": "true",
+    "musicEnabled": "false",
+    "correctSound": "true",
+    "wrongSound": "true",
+    "answer_question": " ",
+    "reset_game": "r",
+    "unlockedAchievements": [
+    ]
+  },
+  "cunfuzed": {
+    "scores": [
+      46.879,
+      47.79,
+      48.968,
+      46.912,
+      46.377,
+      45.308,
+      45.795,
+      48.011,
+      46.361,
+      47.871,
+      47.441,
+      45.494,
+      46.461,
+      47.561,
+      44.908,
+      46.392,
+      43.089
+    ],
+    "totalGames": "0111111111111111111111111",
+    "totalEquations": "0",
+    "blitzScores": [
+      31850,
+      47123
+    ],
+    "passwordHash": "ef260e9aa3c673af240d17a2660480361a8e081d1ffeca2a5ed0e3219fc18567",
+    "freeFallScores": [
+      109,
+      101,
+      93,
+      91,
+      127
+    ],
+    "soundEnabled": "false",
+    "musicEnabled": "true",
+    "correctSound": "false",
+    "wrongSound": "false",
+    "answer_question": "Enter",
+    "reset_game": "r",
+    "unlockedAchievements": "[]"
+  },
+  "SinghIsKing": {
+    "scores": [
+      60.827,
+      48.817,
+      48.251,
+      51.026,
+      51.279,
+      46.531,
+      45.985,
+      43.241,
+      39.679,
+      40.913,
+      46.267,
+      48.042
+    ],
+    "totalGames": "35",
+    "totalEquations": "107459",
+    "blitzScores": [
+      33190,
+      25680,
+      50680
+    ],
+    "passwordHash": "f571094ad6bf1a9f50dd12918ca3a3f60029008afaf3602066c3666e605cdf4c",
+    "freeFallScores": [
+      140,
+      117,
+      121,
+      122
+    ],
+    "soundEnabled": "true",
+    "musicEnabled": "false",
+    "correctSound": "true",
+    "wrongSound": "true",
+    "answer_question": " ",
+    "reset_game": "r",
+    "unlockedAchievements": "[]"
+  },
+  "aah": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "Baoism": {
+    "scores": [
+      53.444,
+      56.271,
+      46.053,
+      46.555,
+      43.63
+    ],
+    "totalGames": "411111111111111111111111111111111111111111111111111",
+    "totalEquations": "261",
+    "blitzScores": [],
+    "passwordHash": "c7036b50f9399b30911651a1bb6cc24689f2e78fe5a919c4f16e4fb7cc5500dd",
+    "freeFallScores": [
+      117
+    ],
+    "soundEnabled": "true",
+    "musicEnabled": "false",
+    "correctSound": "true",
+    "wrongSound": "true",
+    "answer_question": " ",
+    "reset_game": "r",
+    "unlockedAchievements": "[\"first_win\",\"blitz_master\",\"under_construction\",\"zero_input\"]"
+  },
+  "Asdnayme": {
+    "scores": [],
+    "totalGames": 16,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "tu": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "te3": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "dd": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "Warren": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "Warrent": {
+    "scores": [],
+    "totalGames": 1,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "NatedeGreat": {
+    "scores": [],
+    "totalGames": 3,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "passwordHash": "578a5c540757273be9fc69eee0aa6385ccdc74791485c75ad470be196e0e4585",
+    "freeFallScores": []
+  },
+  "Zeo": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "Agni get out!!!!!": {
+    "scores": [],
+    "totalGames": 1,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "Agni look your getting beat by a 10y old": {
+    "scores": [],
+    "totalGames": 7,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "tester": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "6bde0b830d8bd56dea61c5c1cb648c7ffca6ffce2923ad1db9f29079cac947e0",
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "bob": {
+    "scores": [],
+    "totalGames": 4,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "AGNI's Brother (he's the GOAT)": {
+    "scores": [],
+    "totalGames": 4,
+    "totalEquations": 0,
+    "passwordHash": "bf224ea9befb379bfda502ffaadfa1131802b0e30fe62eaccfd5147b90ec2a0d",
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "so": {
+    "scores": [],
+    "totalGames": 1,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "wdsk": {
+    "scores": [],
+    "totalGames": 3,
+    "totalEquations": 0,
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "JonahanoJ": {
+    "scores": [],
+    "totalGames": 2,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": [],
+    "passwordHash": "c411e7119bc47cfc02390a057aa3aedfd48e3f989924abde205c42d3ca53371a"
+  },
+  "bad bui": {
+    "scores": [],
+    "totalGames": 3,
+    "totalEquations": 0,
+    "freeFallScores": [],
+    "blitzScores": [],
+    "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f"
+  },
+  "dummybro": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "MathIsum": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "IndianScammerMan$$$$": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "neercomp": {
+    "scores": [],
+    "totalGames": 1,
+    "totalEquations": 0,
+    "passwordHash": "c9d9454da28129a7c68357f0d3fa859a03fae15ce60055355b50e398c1a69bc4",
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "j": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "foxoffire": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "18ac3e7343f016890c510e93f935261169d9e3f565436429830faf0934f4f8e4",
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "LamB": {
+    "scores": [],
+    "totalGames": 72,
+    "totalEquations": 0,
+    "passwordHash": "cd169607420bc837209d0ddc79638f9be360383530ee8550af25a2013e09e118",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "Eknooreden123": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "Coolgator1211": {
+    "scores": [],
+    "totalGames": 3,
+    "totalEquations": 0,
+    "passwordHash": "6604e5a17faf0e5921a6dd6ed0f6f1cb1f5855a404c0fc2876e11ece3fe05d8a",
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "ramen": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": [],
+    "passwordHash": "d8472e7f4f470b142075ada25acd85415ae9c7dfab273b21c696461e12b772d8"
+  },
+  "alllllly": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "allly": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "89f651e337f0dba3be25365fa6f0a5fd3c109757f9c89f3279b5275954078dea",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "DuoandKit": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "f3289ae033a578b8d5a6a9f9e9cc39f20fe895159edc969aaef68805c4c304c8",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "username": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "629f4cf9337b0d0c76f305d860f98894cfa8c279516b425747514ca8710deb97",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "password": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "ed18dd890c534546c2b9697b8ef5cdb395fe9440d5fc59ce2f8aa2ad25fcd60a",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "asdfghjkl": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "8bb0cf6eb9b17d0f7d22b456f121257dc1254e1f01665370476383ea776df414",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "AT": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "8f434346648f6b96df89dda901c5176b10a6d83961dd3c1ac88b59b2dc327aa4",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "arra/aura": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "d2a227adc910e8ed2e44e6ad747230f2e34577d67a4185cae23beec95bbe6de9",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "AN": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "mason": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "gmail": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "mrwong": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "freeFallScores": [],
+    "blitzScores": [],
+    "passwordHash": "9055e0d3d3ced9ddb57144c2b22635621d110e60793738dbb06111b28c7ed488"
+  },
+  "test1234": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "test123": {
+    "scores": [],
+    "totalGames": "24",
+    "totalEquations": "106594",
+    "soundEnabled": "true",
+    "musicEnabled": "false",
+    "correctSound": "true",
+    "wrongSound": "true",
+    "answer_question": " ",
+    "reset_game": "r",
+    "unlockedAchievements": "[\"first_win\",\"perfect_score\",\"zero_input\",\"blitz_master\",\"brain\",\"twitch\",\"speed_demon\",\"practice_pro\",\"silver_nickel\",\"under_construction\",\"50freefall\"]",
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "test234": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "114bd151f8fb0c58642d2170da4ae7d7c57977260ac2cc8905306cab6b2acabc",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "test345": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "da70dfa4d9f95ac979f921e8e623358236313f334afcd06cddf8a5621cf6a1e9",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "test456": {
+    "scores": [],
+    "totalGames": 1,
+    "totalEquations": 0,
+    "passwordHash": "b3a8e0e1f9ab1bfe3a36f231f676f78bb30a519d2b21e6c530c0eee8ebb4a5d0",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "radha": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "hiii": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "hii": {
+    "scores": [],
+    "totalGames": 1,
+    "totalEquations": 0,
+    "passwordHash": "0b17f39f45da8d62b217c99a80ef6e7f6d73e8e7ea20fada818ddf6b88b2988d",
+    "blitzScores": [],
+    "freeFallScores": [
+      117
+    ]
+  },
+  "tst1": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "tst2": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "O.P.": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "0p AF": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "49d180ecf56132819571bf39d9b7b342522a2ac6d23c1418d3338251bfe469c8",
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "i like child": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "f74efabef12ea619e30b79bddef89cffa9dda494761681ca862cff2871a85980",
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "adiend": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "aiden": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "aiden123": {
+    "scores": [],
+    "totalGames": "0",
+    "totalEquations": "41",
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "blitzScores": [],
+    "freeFallScores": [],
+    "soundEnabled": "true",
+    "musicEnabled": "false",
+    "correctSound": "true",
+    "wrongSound": "true",
+    "answer_question": "Enter",
+    "reset_game": "r",
+    "unlockedAchievements": "[]"
+  },
+  "Doyun Keum": {
+    "scores": [],
+    "totalGames": 2,
+    "totalEquations": 0,
+    "passwordHash": "9a0251ab1bca1c475e9e05274b1adc553d9d740683fcc4fc70c8bb276b693903",
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "blank": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "ff71cf74abb3ccb005b8b64371725db15edc42c1ad33413bbe561b2da3c85ef9",
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "67mangoesiloveeric": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "marc6767": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "bonger": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "530336ad68ed9dd81a59a61b84baa6609181214c7066d35886901c98282baa17",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "Daniel": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "Zarmina": {
+    "scores": [
+      46.129
+    ],
+    "totalGames": 1,
+    "totalEquations": 0,
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "Ray": {
+    "scores": [
+      46.844,
+      45.168,
+      49.856,
+      43.123,
+      41.553
+    ],
+    "totalGames": "211",
+    "totalEquations": "124",
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "blitzScores": [],
+    "freeFallScores": [],
+    "bestTime": "45.168",
+    "soundEnabled": "true",
+    "musicEnabled": "false",
+    "correctSound": "true",
+    "wrongSound": "true",
+    "answer_question": "Enter",
+    "reset_game": "r",
+    "unlockedAchievements": "[\"perfect_score\",\"twitch\",\"first_win\"]"
+  },
+  "Aarna": {
+    "scores": [
+      67.119,
+      60,
+      55.37,
+      51.036,
+      49.831,
+      59.53,
+      60.099,
+      71.154,
+      73.198,
+      63.992
+    ],
+    "totalGames": 13,
+    "totalEquations": 0,
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "blitzScores": [
+      27783,
+      23103,
+      38597
+    ],
+    "freeFallScores": [],
+    "bestTime": "49.831"
+  },
+  "Mason": {
+    "scores": [
+      49.31,
+      38.999,
+      42.267,
+      43.094,
+      41.759
+    ],
+    "totalGames": 5,
+    "totalEquations": 0,
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "Bach": {
+    "scores": [
+      "37570",
+      45.908,
+      48.76
+    ],
+    "totalGames": "611",
+    "totalEquations": "607",
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "soundEnabled": "true",
+    "musicEnabled": "false",
+    "correctSound": "true",
+    "wrongSound": "true",
+    "answer_question": "Enter",
+    "reset_game": "r",
+    "unlockedAchievements": "[\"first_win\",\"blitz_master\"]",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "Adalyn": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "Bao": {
+    "scores": [
+      48.577,
+      47.853,
+      49.521,
+      44.531,
+      43.676,
+      45.869,
+      42.624
+    ],
+    "totalGames": 7,
+    "totalEquations": 0,
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "A_Cc": {
+    "scores": [],
+    "totalGames": 1,
+    "totalEquations": 0,
+    "passwordHash": "b9776d7ddf459c9ad5b0e1d6ac61e27befb5e99fd62446677600d7cacef544d0",
+    "blitzScores": [],
+    "freeFallScores": [
+      85
+    ]
+  },
+  "EpsteinsDad": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "sir": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "s244770": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "RIDDLER": {
+    "scores": [],
+    "totalGames": 1,
+    "totalEquations": 0,
+    "blitzScores": [
+      29897
+    ],
+    "freeFallScores": [],
+    "passwordHash": "2a2925743cfb0b004c23ce8e0868af398fd04831d7f45eace08c9fdfce3e7590"
+  },
+  "a": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "blitzScores": [],
+    "freeFallScores": []
+  },
+  "ABCDEFG": {
+    "scores": [],
+    "totalGames": 0,
+    "totalEquations": 0,
+    "freeFallScores": [],
+    "blitzScores": []
+  },
+  "Leo": {
+    "scores": [],
+    "totalGames": 2,
+    "totalEquations": 0,
+    "blitzScores": [
+      23737,
+      29547
+    ]
+  }
+}
