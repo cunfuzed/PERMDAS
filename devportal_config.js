@@ -1,4 +1,4 @@
-var devportal_API = "https://pda-donor-reggae-labour.trycloudflare.com" //urgent: remove slash at the end!!!!
+var devportal_API = "https://adam-hockey-analog-pine.trycloudflare.com" //urgent: remove slash at the end!!!!
 
 //of course the programmer forgot
 if (devportal_API.endsWith('/')) {
