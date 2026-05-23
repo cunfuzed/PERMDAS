@@ -44,7 +44,7 @@ function restartPermdas() {
 	});
 }
 app.post("/devportal-restart", (req, res) => {
-	var {hash} = req.body;
+	var hash = JSON.parse(req.body).hash;
 	if(hash == PASSWORD_HASH){
 		restartPermdas();
 		res.send("retarded. ... i meant restarted")	
@@ -61,7 +61,8 @@ const LOCAL_FILE = "permdas.js"; //yes theyr diff
 
 
 app.post("/dev-update-from-github", (req, res) => {
-	var {hash} = req.body;
+
+	var hash = JSON.parse(req.body).hash;
 	if(hash == PASSWORD_HASH){
 		console.log("Update from GH");
 		
