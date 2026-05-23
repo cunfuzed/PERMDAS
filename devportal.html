@@ -15,17 +15,28 @@
 	<script src="config.js"></script>
 	<script src="devportal_config.js"></script>
 	<script>
+	async function secureHash(message) {
+		//just uses a lib btw
+		const msgUint8 = new TextEncoder().encode(message);
+		const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+		const hashArray = Array.from(new Uint8Array(hashBuffer));
+		const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+		return hashHex;
+  	}
 	const statusEl = document.getElementById("status");
 
 	function setStatus(msg) {
 		statusEl.textContent = msg;
 	}
-
+  
 	async function restartServer() {
 		setStatus("Sending restart request...");
 		try {
 			const res = await fetch(devportal_API + "/devportal-restart", {
-				method: "POST"
+				method: "POST",
+				body: {
+					hash: secureHash(prompt("Gimme password: "))
+				}
 			});
 			const text = await res.text();
 			setStatus("Restart response: " + text);
@@ -38,7 +49,10 @@
 		setStatus("Sending overwrite request...");
 		try {
 			const res = await fetch(devportal_API + "/dev-update-from-github", {
-				method: "POST"
+				method: "POST",
+				body: {
+					hash: secureHash(prompt("Gimme password: "))
+				}
 			});
 			const text = await res.text();
 			setStatus("Update response: " + text);
