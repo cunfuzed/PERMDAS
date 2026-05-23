@@ -32,6 +32,7 @@
 	async function restartServer() {
 		setStatus("Sending restart request...");
 		try {
+			const hash = await secureHash(prompt("Gimme password: "));
 			const res = await fetch(devportal_API + "/devportal-restart", {
 				method: "POST",
 				headers: {
@@ -52,6 +53,7 @@
 	async function updateServer() {
 		setStatus("Sending overwrite request...");
 		try {
+			const hash = await secureHash(prompt("Gimme password: "));
 			const res = await fetch(devportal_API + "/dev-update-from-github", {
 				method: "POST",
 				headers: {
