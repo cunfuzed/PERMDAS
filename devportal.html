@@ -34,9 +34,13 @@
 		try {
 			const res = await fetch(devportal_API + "/devportal-restart", {
 				method: "POST",
-				body: {
-					hash: secureHash(prompt("Gimme password: "))
-				}
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					hash: hash
+				})
+
 			});
 			const text = await res.text();
 			setStatus("Restart response: " + text);
@@ -50,9 +54,12 @@
 		try {
 			const res = await fetch(devportal_API + "/dev-update-from-github", {
 				method: "POST",
-				body: {
-					hash: secureHash(prompt("Gimme password: "))
-				}
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					hash: hash
+				})
 			});
 			const text = await res.text();
 			setStatus("Update response: " + text);
